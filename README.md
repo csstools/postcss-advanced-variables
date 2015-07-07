@@ -10,8 +10,8 @@
 $dir: assets/icons;
 
 @each $icon in (foo, bar, baz) {
-	.icon-$(icon) {
-		background: url('$(dir)/$(icon).png');
+	.icon-$icon {
+		background: url('$dir/$icon.png');
 	}
 }
 
