@@ -1,5 +1,3 @@
-require('polyfill-regexp-escape');
-
 var postcss = require('postcss');
 
 module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {

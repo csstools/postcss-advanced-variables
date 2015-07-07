@@ -22,7 +22,6 @@
 	},
 	"homepage": "https://github.com/jonathantneal/postcss-advanced-variables",
 	"dependencies": {
-		"polyfill-regexp-escape": "^1.0.0",
 		"postcss": "^4.1.13"
 	},
 	"devDependencies": {
