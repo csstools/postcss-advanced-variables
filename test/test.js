@@ -15,59 +15,188 @@ var test = function (input, output, opts, done) {
 	});
 };
 
-describe('postcss-advanced-variables', function () {
-	it('replaced variables', function (done) {
-		test('$blue: #00F; $red: #F00; a { background-color: $red; color: $(blue) }', 'a { background-color: #F00; color: #00F }', { }, done);
-	});
-
-	it('handles variables and for loops', function (done) {
-		test('$red: #F00; @for $i from 1 to 5 by 2 { .foo-$i { color: $red; width: 1em } } .bar {}', '.foo-1 { color: #F00; width: 1em\n} .foo-3 { color: #F00; width: 1em\n} .foo-5 { color: #F00; width: 1em\n} .bar {}', {}, done);
-	});
-
-	it('handles variables and if equals conditions', function (done) {
-		test('$index: 5; @if $index == 5 { .foo { content: $index; } } .bar { color: black }', '.foo { content: 5 } .bar { color: black }', {}, done);
-	});
-
-	it('handles variables and if equals conditions (not)', function (done) {
-		test('$index: 5; @if $index == 3 { .foo { content: $index; } } .bar { color: black }', '.bar { color: black }', {}, done);
-	});
-
-	it('handles variables and if greater-than conditions', function (done) {
-		test('$index: 5; @if $index > 3 { .foo { content: $index; } } .bar { color: black }', '.foo { content: 5 } .bar { color: black }', {}, done);
-	});
-
-	it('handles variables and if greater-than conditions (not)', function (done) {
-		test('$index: 5; @if $index > 5 { .foo { content: $index; } } .bar { color: black }', '.bar { color: black }', {}, done);
-	});
-
-	it('handles variables and for loops and if conditions', function (done) {
-		test('$red: #F00; @for $i from 1 to 5 by 2 { @if $i >= 3 { .foo-$i { color: $red; width: 1em } } } .bar {}', '.foo-3 { color: #F00; width: 1em\n} .foo-5 { color: #F00; width: 1em\n} .bar {}', {}, done);
-	});
-
-	it('handles each loops', function (done) {
-		test('@each $text in ("foo", "bar", "baz") { .foo { content: $text } } .bar {}', '.foo { content: "foo"\n} .foo { content: "bar"\n} .foo { content: "baz"\n} .bar {}', {}, done);
-	});
-
-	it('handles each loops (the readme example)', function (done) {
+describe('basic usage', function () {
+	it('variables', function (done) {
 		test(
-			'$dir: assets/icons; @each $icon in (foo, bar, baz) { .icon-$icon { background: url($dir/$icon.png); } } .bar {}',
-			'.icon-foo { background: url(assets/icons/foo.png)\n} .icon-bar { background: url(assets/icons/bar.png)\n} .icon-baz { background: url(assets/icons/baz.png)\n} .bar {}',
+			'$red: #f00; .x { color: $red } $blue: #00f; .y { color: $blue } .z {}',
+			'.x { color: #f00 } .y { color: #00f } .z {}',
 			{},
 			done
 		);
 	});
 
-	it('handles for loops (the readme example)', function (done) {
+	it('fors', function (done) {
 		test(
-			'@for $index from 1 to 5 by 2 { .col-$index { width: $(index)0%; } } .bar {}',
-			'.col-1 { width: 10%\n} .col-3 { width: 30%\n} .col-5 { width: 50%\n} .bar {}',
+			'@for $i from 1 to 5 by 2 { .x-$i {} } @for $i from 5 to 1 by 2 { .y-$i {} } .z {}',
+			'.x-1 {} .x-3 {} .x-5 {} .y-5 {} .y-3 {} .y-1 {} .z {}',
 			{},
 			done
 		);
 	});
 
-	// // and soon this will work, arrays within arrays
-	// it('handles each loops within each loops referencing the iterator', function (done) {
-	// 	test('@each $item in (("foo", "bar"), ("baz", "qux")) { @each $text in $item { .foo { content: $text; } } } .bar {}', '', {}, done);
-	// });
+	it('ifs (==)', function (done) {
+		test(
+			'@if 1 == 1 { .x {} } @if 1 == 2 { .y {} } .z {}',
+			'.x {} .z {}',
+			{},
+			done
+		);
+	});
+
+	it('ifs (!=)', function (done) {
+		test(
+			'@if 1 != 1 { .x {} } @if 1 != 2 { .y {} } .z {}',
+			'.y {} .z {}',
+			{},
+			done
+		);
+	});
+
+	it('ifs (<)', function (done) {
+		test(
+			'@if 1 < 2 { .x {} } @if 1 < 1 { .y {} } .z {}',
+			'.x {} .z {}',
+			{},
+			done
+		);
+	});
+
+	it('ifs (>)', function (done) {
+		test(
+			'@if 1 > 1 { .x {} } @if 1 > 0 { .y {} } .z {}',
+			'.y {} .z {}',
+			{},
+			done
+		);
+	});
+
+	it('ifs (<=)', function (done) {
+		test(
+			'@if 1 <= 1 { .x {} } @if 1 <= 0 { .y {} } .z {}',
+			'.x {} .z {}',
+			{},
+			done
+		);
+	});
+
+	it('ifs (>=)', function (done) {
+		test(
+			'@if 1 >= 2 { .x {} } @if 1 >= 1 { .y {} } .z {}',
+			'.y {} .z {}',
+			{},
+			done
+		);
+	});
+
+	it('eaches', function (done) {
+		test(
+			'@each $i in (foo, bar) { .$i {} } @each $i in (foo, bar, baz) { .x-$i {} } .y {}',
+			'.foo {} .bar {} .x-foo {} .x-bar {} .x-baz {} .y {}',
+			{},
+			done
+		);
+	});
+});
+
+describe('nested usage', function () {
+	it('variable as variable', function (done) {
+		test(
+			'$red: #f00; $color: $red; .x { color: $color } .y {}',
+			'.x { color: #f00 } .y {}',
+			{},
+			done
+		);
+	});
+
+	it('for in for', function (done) {
+		test(
+			'@for $i from 1 to 5 by 2 { @for $j from 3 to 1 { .x-$(i)-$(j) {} } } .y {}',
+			'.x-1-3 {} .x-1-2 {} .x-1-1 {} .x-3-3 {} .x-3-2 {} .x-3-1 {} .x-5-3 {} .x-5-2 {} .x-5-1 {} .y {}',
+			{},
+			done
+		);
+	});
+
+	it('each in each', function (done) {
+		test(
+			'@each $i in ((foo, bar), (baz, qux)) { @each $j in $i { .x-$j {} } } .y {}',
+			'.x-foo {} .x-bar {} .x-baz {} .x-qux {} .y {}',
+			{},
+			done
+		);
+	});
+});
+
+describe('mixed nested usage', function () {
+	it('variable + for', function (done) {
+		test(
+			'$red: #f00; @for $i from 1 to 5 by 2 { .x-$i { color: $red; } } .y {}',
+			'.x-1 { color: #f00\n} .x-3 { color: #f00\n} .x-5 { color: #f00\n} .y {}',
+			{},
+			done
+		);
+	});
+
+	it('if + variable', function (done) {
+		test(
+			'$red: #f00; $i: 5; @if $i >= 3 { .x-$i { color: $red; } } .y {}',
+			'.x-5 { color: #f00\n} .y {}',
+			{},
+			done
+		);
+	});
+
+	it('if + fors', function (done) {
+		test(
+			'@for $i from 1 to 5 by 2 { @if $i >= 3 { .x-$i {} } } .y {}',
+			'.x-3 {} .x-5 {} .y {}',
+			{},
+			done
+		);
+	});
+
+	it('if + variable + for', function (done) {
+		test(
+			'$red: #f00; @for $i from 1 to 5 by 2 { @if $i >= 3 { .x-$i { color: $red; } } } .y {}',
+			'.x-3 { color: #f00\n} .x-5 { color: #f00\n} .y {}',
+			{},
+			done
+		);
+	});
+
+	it('each + if', function (done) {
+		test(
+			'@each $i in (foo, bar, baz) { @if $i == foo { .x-$i { background: url($i.png); } } } .y {}',
+			'.x-foo { background: url(foo.png)\n} .y {}',
+			{},
+			done
+		);
+	});
+
+	it('each + for', function (done) {
+		test(
+			'@each $i in (1, 2, 3) { @for $j from $i to 3 { .x-$i { background: url($j.png); } } } .y {}',
+			'.x-1 { background: url(1.png)\n} .x-1 { background: url(2.png)\n} .x-1 { background: url(3.png)\n} .x-2 { background: url(2.png)\n} .x-2 { background: url(3.png)\n} .x-3 { background: url(3.png)\n} .y {}',
+			{},
+			done
+		);
+	});
+
+	it('each + for + if', function (done) {
+		test(
+			'@each $i in (1, 2, 3) { @for $j from $i to 3 { @if $i >= 3 { .x-$i { background: url($j.png); } } } } .y {}',
+			'.x-3 { background: url(3.png)\n} .y {}',
+			{},
+			done
+		);
+	});
+
+	it('each + variable + for + if', function (done) {
+		test(
+			'$dir: assets/images; @each $i in (1, 2, 3) { @for $j from $i to 3 { @if $i >= 3 { .x-$i { background: url($dir/$j.png); } } } } .y {}',
+			'.x-3 { background: url(assets/images/3.png)\n} .y {}',
+			{},
+			done
+		);
+	});
 });
