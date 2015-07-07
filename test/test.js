@@ -50,7 +50,7 @@ describe('postcss-advanced-variables', function () {
 
 	it('handles each loops (the readme example)', function (done) {
 		test(
-			'$dir: assets/icons; @each $icon in (foo, bar, baz) { .icon-$(icon) { background: url($(dir)/$(icon).png); } } .bar {}',
+			'$dir: assets/icons; @each $icon in (foo, bar, baz) { .icon-$icon { background: url($dir/$icon.png); } } .bar {}',
 			'.icon-foo { background: url(assets/icons/foo.png)\n} .icon-bar { background: url(assets/icons/bar.png)\n} .icon-baz { background: url(assets/icons/baz.png)\n} .bar {}',
 			{},
 			done
