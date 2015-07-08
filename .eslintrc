@@ -9,7 +9,6 @@
 		"no-loop-func":          [0],
 		"key-spacing":           [0],
 		"strict":                [0],
-		"indent":                ["tab"],
 		"quotes":                [2, "single", "avoid-escape"],
 		"curly":                 [0]
 	},
