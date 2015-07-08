@@ -54,8 +54,8 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		var node;
 
 		while (node = parent.nodes[++index]) {
-			if (node.type === 'decl')        index = eachDecl  (node, parent, index);
-			else if (node.type === 'rule')   index = eachRule  (node, parent, index);
+			if (node.type === 'decl')        index = eachDecl(node, parent, index);
+			else if (node.type === 'rule')   index = eachRule(node, parent, index);
 			else if (node.type === 'atrule') index = eachAtRule(node, parent, index);
 
 			if (node.nodes) each(node);
@@ -188,12 +188,12 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 
 		// evaluate expression
 		if (
-			(operator === '==' && left == right) ||
-			(operator === '!=' && left != right) ||
-			(operator === '<'  && left < right) ||
-			(operator === '<='  && left <= right) ||
-			(operator === '>'  && left > right) ||
-			(operator === '>='  && left >= right)
+			operator === '==' && left === right ||
+			operator === '!=' && left !== right ||
+			operator === '<'  && left < right ||
+			operator === '<=' && left <= right ||
+			operator === '>'  && left > right ||
+			operator === '>=' && left >= right
 		) {
 			// process node children
 			each(node);
