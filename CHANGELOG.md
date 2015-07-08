@@ -1,3 +1,7 @@
+## 0.0.3 (2015-07-08)
+
+Added: Support for @else statements
+
 ## 0.0.2 (2015-07-07)
 
 Fixed: Some variable evaluations
