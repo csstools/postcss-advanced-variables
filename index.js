@@ -186,6 +186,9 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		var operator = params[1];
 		var right    = getVariableTransformedString(node, params[2]);
 
+		// set next node
+		var next = node.next();
+
 		// evaluate expression
 		if (
 			operator === '==' && left === right ||
@@ -203,6 +206,26 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 
 			// insert child nodes
 			parent.insertBefore(node, node.nodes);
+
+			// if next node is an else statement
+			if (next && next.type === 'atrule' && next.name === 'else') {
+				next.removeSelf();
+			}
+		} else {
+			// if next node is an else statement
+			if (next && next.type === 'atrule' && next.name === 'else') {
+				// process next children
+				each(next);
+
+				// increment index
+				index += next.nodes.length;
+
+				// insert child nodes
+				parent.insertBefore(node, next.nodes);
+
+				// remove next
+				next.removeSelf();
+			}
 		}
 
 		// remove node
