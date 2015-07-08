@@ -88,6 +88,15 @@ describe('basic usage', function () {
 		);
 	});
 
+	it('elses', function (done) {
+		test(
+			'@if 1 == 1 { .x-1 {} } @else { .x-2 {} } @if 1 == 2 { .y-1 {} } @else { .y-2 {} } .z {}',
+			'.x-1 {} .y-2 {} .z {}',
+			{},
+			done
+		);
+	});
+
 	it('eaches', function (done) {
 		test(
 			'@each $i in (foo, bar) { .$i {} } @each $i in (foo, bar, baz) { .x-$i {} } .y {}',
