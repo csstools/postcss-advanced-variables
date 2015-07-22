@@ -96,7 +96,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		if (node.name === 'for') index = eachAtForRule(node, parent, index);
 		else if (node.name === 'each') index = eachAtEachRule(node, parent, index);
 		else if (node.name === 'if') index = eachAtIfRule(node, parent, index);
-
+		else if (node.name === 'media') node.params = getVariableTransformedString(parent, node.params);
 		return index;
 	}
 
