@@ -1,3 +1,7 @@
+## 0.0.4 (2015-07-22)
+
+Added: Support for vars in @media
+
 ## 0.0.3 (2015-07-08)
 
 Added: Support for @else statements
