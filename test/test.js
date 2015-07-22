@@ -25,6 +25,24 @@ describe('basic usage', function () {
 		);
 	});
 
+	it('variables in simple media', function (done) {
+		test(
+			'$x: 600px; @media (min-width: $x) {}',
+			'@media (min-width: 600px) {}',
+			{},
+			done
+		);
+	});
+
+	it('variables in complex media', function (done) {
+		test(
+			'$x: 600px; $orientation: landscape; @media not (min-width: $x), handheld and (orientation: $orientation) {}',
+			'@media not (min-width: 600px), handheld and (orientation: landscape) {}',
+			{},
+			done
+		);
+	});
+
 	it('fors', function (done) {
 		test(
 			'@for $i from 1 to 5 by 2 { .x-$i {} } @for $i from 5 to 1 by 2 { .y-$i {} } .z {}',
