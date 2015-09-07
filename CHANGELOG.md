@@ -1,3 +1,10 @@
+## 1.0.0 (2015-09-07)
+
+Updated: PostCSS 5.0.4
+Updated: Chai 3.2.0
+Updated: ESLint 1.0
+Updated: Mocha 2.1.3  
+
 ## 0.0.4 (2015-07-22)
 
 Added: Support for vars in @media

@@ -70,7 +70,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 
 			setVariable(parent, node.prop.slice(1), node.value);
 
-			node.removeSelf();
+			node.remove();
 
 			--index;
 		}
@@ -133,7 +133,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		}
 
 		// remove node
-		node.removeSelf();
+		node.remove();
 
 		// return index
 		return --index;
@@ -171,7 +171,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		}
 
 		// remove node
-		node.removeSelf();
+		node.remove();
 
 		// return index
 		return --index;
@@ -209,7 +209,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 
 			// if next node is an else statement
 			if (next && next.type === 'atrule' && next.name === 'else') {
-				next.removeSelf();
+				next.remove();
 			}
 		} else {
 			// if next node is an else statement
@@ -224,12 +224,12 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 				parent.insertBefore(node, next.nodes);
 
 				// remove next
-				next.removeSelf();
+				next.remove();
 			}
 		}
 
 		// remove node
-		node.removeSelf();
+		node.remove();
 
 		// return index
 		return --index;
