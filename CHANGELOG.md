@@ -1,3 +1,7 @@
+## 1.1.0 (2015-09-08)
+
+Added: Support for `!default`
+
 ## 1.0.0 (2015-09-07)
 
 Updated: PostCSS 5.0.4

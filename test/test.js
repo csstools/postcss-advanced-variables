@@ -25,6 +25,15 @@ describe('basic usage', function () {
 		);
 	});
 
+	it('variables with !default', function (done) {
+		test(
+			'$red: #f00; $red: #00f !default; .x { color: $red } $blue: #00f; .y { color: $blue } .z {}',
+			'.x { color: #f00 } .y { color: #00f } .z {}',
+			{},
+			done
+		);
+	});
+
 	it('variables in simple media', function (done) {
 		test(
 			'$x: 600px; @media (min-width: $x) {}',

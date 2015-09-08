@@ -9,6 +9,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	var isVariableDeclaration = /^\$[\w-]+$/;
 	var variablesInString = /(^|[^\\])\$(?:\(([A-z][\w-]*)\)|([A-z][\w-]*))/g;
 	var wrappingParen = /^\((.*)\)$/g;
+	var isDefaultValue = /\s+!default$/;
 
 	// Helpers
 	// -------
@@ -32,6 +33,11 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	// node.variables[NAME] => 'VALUE'
 	function setVariable(node, name, value) {
 		node.variables = node.variables || {};
+
+		if (isDefaultValue.test(value)) {
+			if (getVariable(node, name)) return;
+			else value = value.replace(isDefaultValue, '');
+		}
 
 		node.variables[name] = getArrayedString(value, true);
 	}
