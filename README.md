@@ -92,6 +92,12 @@ grunt.initConfig({
 });
 ```
 
+## Options
+
+### `opts.variables`
+
+The initial state for all global variables, keyed by name.
+
 [ci]: https://travis-ci.org/jonathantneal/postcss-advanced-variables
 [ci-img]: https://travis-ci.org/jonathantneal/postcss-advanced-variables.svg
 [PostCSS]: https://github.com/postcss/postcss

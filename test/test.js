@@ -43,6 +43,19 @@ describe('basic usage', function () {
 		);
 	});
 
+	it('variables in options', function (done) {
+		test(
+			'body { background-color: $backgroundColor; }',
+			'body { background-color: red; }',
+			{
+				variables: {
+					backgroundColor: 'red'
+				}
+			},
+			done
+		);
+	});
+
 	it('variables in complex media', function (done) {
 		test(
 			'$x: 600px; $orientation: landscape; @media not (min-width: $x), handheld and (orientation: $orientation) {}',

@@ -242,6 +242,11 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	}
 
 	return function (css) {
+		// Initialize each global variable.
+		for (var name in opts.variables || {}) {
+			setVariable(css, name, opts.variables[name]);
+		}
+		// Begin processing each css node.
 		each(css);
 	};
 });
