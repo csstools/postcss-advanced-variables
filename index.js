@@ -10,6 +10,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	var variablesInString = /(^|[^\\])\$(?:\(([A-z][\w-]*)\)|([A-z][\w-]*))/g;
 	var wrappingParen = /^\((.*)\)$/g;
 	var isDefaultValue = /\s+!default$/;
+	var isKeyframesAtRule = /^(-(moz|o|webkit)-)?keyframes$/;
 
 	// Helpers
 	// -------
@@ -103,6 +104,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		else if (node.name === 'each') index = eachAtEachRule(node, parent, index);
 		else if (node.name === 'if') index = eachAtIfRule(node, parent, index);
 		else if (node.name === 'media') node.params = getVariableTransformedString(parent, node.params);
+		else if (isKeyframesAtRule.test(node.name)) node.params = getVariableTransformedString(parent, node.params);
 		return index;
 	}
 
