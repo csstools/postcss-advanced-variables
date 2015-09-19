@@ -43,6 +43,24 @@ describe('basic usage', function () {
 		);
 	});
 
+	it('variables in simple keyframes', function (done) {
+		test(
+			'$animName: fadeIn; @keyframes $animName {}',
+			'@keyframes fadeIn {}',
+			{},
+			done
+		);
+	});
+
+	it('variables in vendor-prefixed keyframes', function (done) {
+		test(
+			'$animName: bounce; @-webkit-keyframes $animName {} @-moz-keyframes $animName {} @-o-keyframes $animName {}',
+			'@-webkit-keyframes bounce {} @-moz-keyframes bounce {} @-o-keyframes bounce {}',
+			{},
+			done
+		);
+	});
+
 	it('variables in options', function (done) {
 		test(
 			'body { background-color: $backgroundColor; }',
