@@ -1,3 +1,7 @@
+## 1.2.0 (2015-10-21)
+
+Added: Global variables set in options
+
 ## 1.1.0 (2015-09-08)
 
 Added: Support for `!default`

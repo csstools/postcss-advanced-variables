@@ -1,10 +1,10 @@
-# PostCSS Advanced Variables [![Build Status][ci-img]][ci]
+# Advanced Variables [![Build Status][ci-img]][ci]
 
 <img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
 
-[PostCSS Advanced Variables] is a [PostCSS] plugin that converts Sass variables and conditionals into CSS.
+[Advanced Variables] converts Sass-like variables and conditionals into CSS.
 
-```css
+```scss
 /* before */
 
 $dir: assets/icons;
@@ -50,45 +50,82 @@ $dir: assets/icons;
 
 ## Usage
 
-You just need to follow these two steps to use [PostCSS Advanced Variables]:
+Add [Advanced Variables] to your build tool:
 
-1. Add [PostCSS] to your build tool.
-2. Add [PostCSS Advanced Variables] as a PostCSS process.
-
-```sh
+```bash
 npm install postcss-advanced-variables --save-dev
 ```
 
-### Node
+#### Node
 
 ```js
-postcss([ require('postcss-advanced-variables')({ /* options */ }) ])
+require('postcss-advanced-variables')({ /* options */ }).process(YOUR_CSS);
 ```
 
-### Grunt
+#### PostCSS
+
+Add [PostCSS] to your build tool:
+
+```bash
+npm install postcss --save-dev
+```
+
+Load [Advanced Variables] as a PostCSS plugin:
+
+```js
+postcss([
+    require('postcss-advanced-variables')({ /* options */ })
+]);
+```
+
+#### Gulp
+
+Add [Gulp PostCSS] to your build tool:
+
+```bash
+npm install gulp-postcss --save-dev
+```
+
+Enable [Advanced Variables] within your Gulpfile:
+
+```js
+var postcss = require('gulp-postcss');
+
+gulp.task('css', function () {
+    return gulp.src('./css/src/*.css').pipe(
+        postcss([
+            require('postcss-advanced-variables')({ /* options */ })
+        ])
+    ).pipe(
+        gulp.dest('./css')
+    );
+});
+```
+
+#### Grunt
 
 Add [Grunt PostCSS] to your build tool:
 
-```sh
-npm install postcss-advanced-variables --save-dev
+```bash
+npm install grunt-postcss --save-dev
 ```
 
-Enable [PostCSS Advanced Variables] within your Gruntfile:
+Enable [Advanced Variables] within your Gruntfile:
 
 ```js
 grunt.loadNpmTasks('grunt-postcss');
 
 grunt.initConfig({
-	postcss: {
-		options: {
-			processors: [
-				require('postcss-advanced-variables')({ /* options */ })
-			]
-		},
-		dist: {
-			src: 'css/*.css'
-		}
-	}
+    postcss: {
+        options: {
+            processors: [
+                require('postcss-advanced-variables')({ /* options */ })
+            ]
+        },
+        dist: {
+            src: 'css/*.css'
+        }
+    }
 });
 ```
 
@@ -100,5 +137,7 @@ The initial state for all global variables, keyed by name.
 
 [ci]: https://travis-ci.org/jonathantneal/postcss-advanced-variables
 [ci-img]: https://travis-ci.org/jonathantneal/postcss-advanced-variables.svg
+[Gulp PostCSS]: https://github.com/postcss/gulp-postcss
+[Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
 [PostCSS]: https://github.com/postcss/postcss
-[PostCSS Advanced Variables]: https://github.com/jonathantneal/postcss-advanced-variables
+[Advanced Variables]: https://github.com/jonathantneal/postcss-advanced-variables

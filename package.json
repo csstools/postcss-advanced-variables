@@ -1,36 +1,41 @@
 {
-	"name": "postcss-advanced-variables",
-	"version": "1.1.0",
-	"description": "PostCSS plugin that enables Sass-like variables, conditionals, and iterators in CSS",
-	"keywords": [
-		"postcss",
-		"css",
-		"postcss-plugin",
-		"sass",
-		"variables",
-		"conditionals",
-		"iterators"
-	],
-	"author": "Jonathan Neal <jonathantneal@hotmail.com>",
-	"license": "CC0-1.0",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/jonathantneal/postcss-advanced-variables.git"
-	},
-	"bugs": {
-		"url": "https://github.com/jonathantneal/postcss-advanced-variables/issues"
-	},
-	"homepage": "https://github.com/jonathantneal/postcss-advanced-variables",
-	"dependencies": {
-		"postcss": "^5.0.4"
-	},
-	"devDependencies": {
-		"chai": "^3.2.0",
-		"gulp": "^3.9.0",
-		"gulp-eslint": "^1.0.0",
-		"gulp-mocha": "^2.1.3"
-	},
-	"scripts": {
-		"test": "gulp"
-	}
+  "name": "postcss-advanced-variables",
+  "version": "1.2.0",
+  "description": "PostCSS plugin that enables Sass-like variables, conditionals, and iterators in CSS",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "sass",
+    "scss",
+    "variables",
+    "conditionals",
+    "iterators",
+    "fors",
+    "eaches",
+    "medias",
+    "defaults"
+  ],
+  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "license": "CC0-1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonathantneal/postcss-advanced-variables.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonathantneal/postcss-advanced-variables/issues"
+  },
+  "homepage": "https://github.com/jonathantneal/postcss-advanced-variables",
+  "dependencies": {
+    "postcss": "^5.0.4"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.0.0",
+    "gulp-mocha": "^2.1.3"
+  },
+  "scripts": {
+    "test": "gulp"
+  }
 }
