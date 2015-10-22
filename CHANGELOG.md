@@ -1,3 +1,8 @@
+## 1.2.1 (2015-10-21)
+
+Updated: PostCSS 5.0.10
+Updated: Tests
+
 ## 1.2.0 (2015-10-21)
 
 Added: Global variables set in options

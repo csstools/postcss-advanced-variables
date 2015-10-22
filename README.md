@@ -131,9 +131,34 @@ grunt.initConfig({
 
 ## Options
 
-### `opts.variables`
+### `variables`
 
-The initial state for all global variables, keyed by name.
+Type: `Object`  
+Default: `{}`
+
+Specifies your own global variables.
+
+```js
+require('postcss-advanced-variables')({
+	variables: {
+		'site-width': '960px'
+	}
+});
+```
+
+```css
+/* before */
+
+.hero {
+	max-width: $site-width;
+}
+
+/* after */
+
+.hero {
+	max-width: 960px;
+}
+```
 
 [ci]: https://travis-ci.org/jonathantneal/postcss-advanced-variables
 [ci-img]: https://travis-ci.org/jonathantneal/postcss-advanced-variables.svg
