@@ -88,3 +88,16 @@
 .test-baz {
 	color: green;
 }
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeIn {}
+@-moz-keyframes fadeIn {}
+@-o-keyframes fadeIn {}
