@@ -1,3 +1,7 @@
+## 1.2.2 (2015-10-21)
+
+Removed: Old gulp file
+
 ## 1.2.1 (2015-10-21)
 
 Updated: PostCSS 5.0.10
