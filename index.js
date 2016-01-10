@@ -158,7 +158,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		// each iteration
 		while (start < end) {
 			// set iterating variable
-			if (array[start] instanceof Array && mapped.length === array[start].length) {
+			if (Array.isArray(array[start]) && mapped.length === array[start].length) {
 				array[start].forEach(function(value, i) {
 					setVariable(node, mapped[i].trim().slice(1), value);
 				});
