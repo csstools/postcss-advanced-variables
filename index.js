@@ -149,7 +149,8 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		// set params
 		var params = node.params.split(' in ');
 
-		var name  = params[0].trim().slice(1);
+		var mapped = params[0].split(',');
+
 		var array = getArrayedString(getVariableTransformedString(node, params.slice(1).join(' in ')), true);
 		var start = 0;
 		var end   = array.length;
@@ -157,7 +158,16 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		// each iteration
 		while (start < end) {
 			// set iterating variable
-			setVariable(node, name, array[start]);
+			if (array[start] instanceof Array && mapped.length === array[start].length) {
+				array[start].forEach(function(value, i) {
+					setVariable(node, mapped[i].trim().slice(1), value);
+				});
+			} else if (mapped.length > 1) {
+				setVariable(node, mapped[0].trim().slice(1), start);
+				setVariable(node, mapped[1].trim().slice(1), array[start]);
+			} else {
+				setVariable(node, mapped[0].trim().slice(1), array[start]);
+			}
 
 			// clone node
 			var clone = node.clone({ parent: parent, variables: node.variables });

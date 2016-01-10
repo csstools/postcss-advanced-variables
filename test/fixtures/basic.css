@@ -1,6 +1,8 @@
 $pass: green !default;
 $fail: red;
 $width: 600px;
+$width2: 700px;
+$width3: 800px;
 $number: 5;
 
 .color {
@@ -156,5 +158,11 @@ $orientation: landscape;
 @each $i in (foo, bar, baz) {
 	.test-$i {
 		color: $pass;
+	}
+}
+
+@each $k, $v in ((m, $width), (l, $width2), (xl, $width3)) {
+	.test-width-$k {
+		width: $v;
 	}
 }
