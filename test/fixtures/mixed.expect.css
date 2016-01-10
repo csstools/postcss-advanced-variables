@@ -87,3 +87,18 @@
 
     background: url(assets/images/3.png)
 }
+
+:nth-child(0) {
+
+    color: red
+}
+
+:nth-child(1) {
+
+    color: white
+}
+
+:nth-child(2) {
+
+    color: blue
+}

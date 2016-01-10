@@ -88,3 +88,15 @@
 .test-baz {
 	color: blue;
 }
+
+.test-width-m {
+	width: 600px;
+}
+
+.test-width-l {
+	width: 700px;
+}
+
+.test-width-xl {
+	width: 800px;
+}
