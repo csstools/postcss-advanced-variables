@@ -7,7 +7,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	// --------
 
 	var isVariableDeclaration = /^\$[\w-]+$/;
-	var variablesInString = /(^|[^\\])\$(?:\(([A-z][\w-]*)\)|([A-z][\w-]*))/g;
+	var variablesInString = /(^|[^\\])(?:#\{\$([A-z][\w-]*)\}|\$\(([A-z][\w-]*)\)|\$([A-z][\w-]*))/g;
 	var wrappingParen = /^\((.*)\)$/g;
 	var isDefaultValue = /\s+!default$/;
 
@@ -44,8 +44,8 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 
 	// 'Hello $NAME' => 'Hello VALUE'
 	function getVariableTransformedString(node, string) {
-		return string.replace(variablesInString, function (match, before, name1, name2) {
-			var value = getVariable(node, name1 || name2);
+		return string.replace(variablesInString, function (match, before, name1, name2, name3) {
+			var value = getVariable(node, name1 || name2 || name3);
 
 			return value === undefined ? match : before + value;
 		});
