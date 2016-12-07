@@ -50,7 +50,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 			return value === undefined ? match : before + value;
 		});
 	}
-	
+
 	// '4' => 4
 	function getNumberIfValid(string) {
 		return isNaN(string) ? string : Number(string);
