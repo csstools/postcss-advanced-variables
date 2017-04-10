@@ -131,6 +131,13 @@ grunt.initConfig({
 
 ## Options
 
+### `silent`
+
+Type: `Boolean`
+Default: `false`
+
+Silences errors thrown when undefined variables are used. By default errors are thrown.
+
 ### `variables`
 
 Type: `Object`  
