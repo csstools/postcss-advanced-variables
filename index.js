@@ -2,6 +2,7 @@ var postcss = require('postcss');
 
 module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	opts = opts || {};
+	opts.silent = opts.silent || false;
 
 	// Matchers
 	// --------
@@ -26,6 +27,8 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	// $NAME => VALUE
 	function getVariable(node, name) {
 		var value = node.variables && name in node.variables ? node.variables[name] : node.parent && getVariable(node.parent, name);
+
+		if (!opts.silent && value === undefined) throw new Error('Unknown CSS variable $' + name);
 
 		return value;
 	}
