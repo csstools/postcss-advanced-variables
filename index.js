@@ -52,6 +52,11 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		});
 	}
 
+	// '4' => 4
+	function getNumberIfValid(string) {
+		return isNaN(string) ? string : Number(string);
+	}
+
 	// Loopers
 	// -------
 
@@ -194,9 +199,9 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		// set params
 		var params = postcss.list.space(node.params);
 
-		var left     = getVariableTransformedString(node, params[0]);
+		var left     = getNumberIfValid(getVariableTransformedString(node, params[0]));
 		var operator = params[1];
-		var right    = getVariableTransformedString(node, params[2]);
+		var right    = getNumberIfValid(getVariableTransformedString(node, params[2]));
 
 		// set next node
 		var next = node.next();
