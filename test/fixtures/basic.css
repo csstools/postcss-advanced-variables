@@ -2,6 +2,7 @@ $pass: green !default;
 $fail: red;
 $width: 600px;
 $number: 5;
+$animName: fadeIn;
 
 .color {
 	color: $pass;
@@ -158,3 +159,16 @@ $orientation: landscape;
 		color: $pass;
 	}
 }
+
+@keyframes $animName {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes $animName {}
+@-moz-keyframes $animName {}
+@-o-keyframes $animName {}
