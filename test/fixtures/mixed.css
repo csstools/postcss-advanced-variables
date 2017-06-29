@@ -50,3 +50,9 @@ $dir: assets/images;
 		}
 	}
 }
+
+@each $color $i in (red, white, blue) {
+	:nth-child($i) {
+		color: $color;
+	}
+}

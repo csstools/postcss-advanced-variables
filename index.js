@@ -150,8 +150,10 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	function eachAtEachRule(node, parent, index) {
 		// set params
 		var params = node.params.split(' in ');
+		var args = params[0].trim().split(' ');
 
-		var name  = params[0].trim().slice(1);
+		var name  = args[0].trim().slice(1);
+		var iter  = args.length > 1 ? args[1].trim().slice(1) : null;
 		var array = getArrayedString(getVariableTransformedString(node, params.slice(1).join(' in ')), true);
 		var start = 0;
 		var end   = array.length;
@@ -160,6 +162,9 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		while (start < end) {
 			// set iterating variable
 			setVariable(node, name, array[start]);
+			if (iter) {
+				setVariable(node, iter, start);
+			}
 
 			// clone node
 			var clone = node.clone({ parent: parent, variables: node.variables });
