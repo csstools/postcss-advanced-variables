@@ -1,0 +1,17 @@
+$x: red;
+$y: 50px;
+
+.some-$x {
+  color: green;
+  width: calc(100px + $y);
+}
+
+.other-$(x) {
+  color: green;
+  width: calc(100px + $(y));
+}
+
+.thing-#{$x} {
+  color: green;
+  width: calc(100px + #{$y});
+}

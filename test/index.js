@@ -13,11 +13,17 @@ var tests = {
 		},
 		'mixed': {
 			message: 'supports mixed usage'
+		},
+		'scss': {
+			message: 'supports scss interpolation',
+			options: {
+				syntax: require('postcss-scss')
+			}
 		}
 	}
 };
 
-var debug = false;
+var debug = true;
 var dir   = './test/fixtures/';
 
 var fs      = require('fs');
