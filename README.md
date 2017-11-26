@@ -160,6 +160,13 @@ require('postcss-advanced-variables')({
 }
 ```
 
+### `warnOfUnresolved`
+Type: `boolean`  
+Default: `true`
+
+Warns of unused variables.
+
+
 [ci]: https://travis-ci.org/jonathantneal/postcss-advanced-variables
 [ci-img]: https://travis-ci.org/jonathantneal/postcss-advanced-variables.svg
 [Gulp PostCSS]: https://github.com/postcss/gulp-postcss
