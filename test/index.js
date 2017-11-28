@@ -4,10 +4,21 @@ var tests = {
 			message: 'supports basic usage'
 		},
 		'basic:var': {
-			message: 'supports basic usage with variables',
+			message: 'supports basic usage with variables option as an object',
 			options: {
 				variables: {
 					pass: 'blue'
+				}
+			}
+		},
+		'basic:varFunc': {
+			message: 'supports basic usage with variables option as a function',
+			options: {
+				variables: function(name) {
+					if (name === 'pass') {
+						return 'blue';
+					}
+					return undefined;
 				}
 			}
 		},

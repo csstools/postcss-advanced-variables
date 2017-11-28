@@ -7,6 +7,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		},
 		opts
 	);
+	var isOptsVariablesFunc = typeof opts.variables === 'function';
 
 	// Matchers
 	// --------
@@ -31,8 +32,17 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 
 	// $NAME => VALUE
 	function getVariable(node, name) {
-		var value = node.variables && name in node.variables ? node.variables[name] : node.parent && getVariable(node.parent, name);
-
+		var value;
+		if (node.variables !== undefined && name in node.variables) {
+			value = node.variables[name];
+		} else if (node.parent !== undefined) {
+			value = getVariable(node.parent, name);
+		} else if (isOptsVariablesFunc === true) {
+			value = opts.variables(name);
+			if (value === null) {
+				value = undefined; // Normalize to undefined.
+			}
+		}
 		return value;
 	}
 
@@ -49,13 +59,13 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	}
 
 	// 'Hello $NAME' => 'Hello VALUE'
-	function getVariableTransformedString(node, string, result, logNode) {
+	function getVariableTransformedString(node, string, result, srcNode) {
 		return string.replace(variablesInString, function (match, before, name1, name2, name3) {
 			var varName = name1 || name2 || name3;
 			var value = getVariable(node, varName);
 
 			if (value === undefined && opts.warnOfUnresolved === true) {
-				result.warn('Could not resolve variable "$' + varName + '" within "' + string + '"', { node: logNode || node });
+				result.warn('Could not resolve variable "$' + varName + '" within "' + string + '"', { node: srcNode || node });
 			}
 			return value === undefined ? match : before + value;
 		});
@@ -231,8 +241,13 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 
 	return function (css, result) {
 		// Initialize each global variable.
-		for (var name in opts.variables || {}) {
-			setVariable(css, name, opts.variables[name]);
+		if (
+			isOptsVariablesFunc === false &&
+			opts.variables !== undefined && opts.variables !== null
+		) {
+			for (var name in opts.variables) {
+				setVariable(css, name, opts.variables[name]);
+			}
 		}
 		// Begin processing each css node.
 		each(css, result);
