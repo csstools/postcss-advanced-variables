@@ -59,13 +59,13 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	}
 
 	// 'Hello $NAME' => 'Hello VALUE'
-	function getVariableTransformedString(node, string, result, srcNode) {
+	function getVariableTransformedString(searchNode, string, srcNode, result) {
 		return string.replace(variablesInString, function (match, before, name1, name2, name3) {
 			var varName = name1 || name2 || name3;
-			var value = getVariable(node, varName);
+			var value = getVariable(searchNode, varName);
 
 			if (value === undefined && opts.warnOfUnresolved === true) {
-				result.warn('Could not resolve variable "$' + varName + '" within "' + string + '"', { node: srcNode || node });
+				result.warn('Could not resolve variable "$' + varName + '" within "' + string + '"', { node: srcNode });
 			}
 			return value === undefined ? match : before + value;
 		});
@@ -97,21 +97,21 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	function eachDecl(node, parent, result) {
 		// $NAME: VALUE
 		if (isVariableDeclaration.test(node.prop)) {
-			node.value = getVariableTransformedString(parent, node.value, result, node);
+			node.value = getVariableTransformedString(parent, node.value, node, result);
 
 			setVariable(parent, node.prop.slice(1), node.value);
 
 			node.remove();
 		} else {
-			node.prop = getVariableTransformedString(parent, node.prop, result, node);
+			node.prop = getVariableTransformedString(parent, node.prop, node, result);
 
-			node.value = getVariableTransformedString(parent, node.value, result, node);
+			node.value = getVariableTransformedString(parent, node.value, node, result);
 		}
 	}
 
 	// SELECTOR {RULE}
 	function eachRule(node, parent, result) {
-		node.selector = getVariableTransformedString(parent, node.selector, result, node);
+		node.selector = getVariableTransformedString(parent, node.selector, node, result);
 	}
 
 	// @NAME PARAMS
@@ -119,8 +119,8 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		if (node.name === 'for') 			eachAtForRule(node, parent, result);
 		else if (node.name === 'each')		eachAtEachRule(node, parent, result);
 		else if (node.name === 'if')		eachAtIfRule(node, parent, result);
-		else if (node.name === 'media') node.params = getVariableTransformedString(parent, node.params, result, node);
-		else if (isKeyframesAtRule.test(node.name)) node.params = getVariableTransformedString(parent, node.params, result, node);
+		else if (node.name === 'media') node.params = getVariableTransformedString(parent, node.params, node, result);
+		else if (isKeyframesAtRule.test(node.name)) node.params = getVariableTransformedString(parent, node.params, node, result);
 	}
 
 	// @for NAME from START to END by INCREMENT
@@ -129,9 +129,9 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		var params = postcss.list.space(node.params);
 
 		var name      = params[0].trim().slice(1);
-		var start     = +getVariableTransformedString(node, params[2], result, node);
-		var end       = +getVariableTransformedString(node, params[4], result, node);
-		var increment = 6 in params && +getVariableTransformedString(node, params[6], result, node) || 1;
+		var start     = +getVariableTransformedString(node, params[2], node, result);
+		var end       = +getVariableTransformedString(node, params[4], node, result);
+		var increment = 6 in params && +getVariableTransformedString(node, params[6], node, result) || 1;
 		var direction = start <= end ? 1 : -1;
 
 		// each iteration
@@ -164,7 +164,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 
 		var name  = args[0].trim().slice(1);
 		var iter  = args.length > 1 ? args[1].trim().slice(1) : null;
-		var array = getArrayedString(getVariableTransformedString(node, params.slice(1).join(' in '), result, node), true);
+		var array = getArrayedString(getVariableTransformedString(node, params.slice(1).join(' in '), node, result), true);
 		var start = 0;
 		var end   = array.length;
 
@@ -198,9 +198,9 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 		// set params
 		var params = postcss.list.space(node.params);
 
-		var left     = getNumberIfValid(getVariableTransformedString(node, params[0], result, node));
+		var left     = getNumberIfValid(getVariableTransformedString(node, params[0], node, result));
 		var operator = params[1];
-		var right    = getNumberIfValid(getVariableTransformedString(node, params[2], result, node));
+		var right    = getNumberIfValid(getVariableTransformedString(node, params[2], node, result));
 
 		// set next node
 		var next = node.next();
