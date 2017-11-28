@@ -31,14 +31,17 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	}
 
 	// $NAME => VALUE
-	function getVariable(node, name) {
+	function getVariable(node, name, srcNode) {
+		if (srcNode === undefined) {
+			srcNode = node;
+		}
 		var value;
 		if (node.variables !== undefined && name in node.variables) {
 			value = node.variables[name];
 		} else if (node.parent !== undefined) {
-			value = getVariable(node.parent, name);
+			value = getVariable(node.parent, name, srcNode);
 		} else if (isOptsVariablesFunc === true) {
-			value = opts.variables(name);
+			value = opts.variables(name, srcNode);
 			if (value === null) {
 				value = undefined; // Normalize to undefined.
 			}
@@ -62,7 +65,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	function getVariableTransformedString(searchNode, string, srcNode, result) {
 		return string.replace(variablesInString, function (match, before, name1, name2, name3) {
 			var varName = name1 || name2 || name3;
-			var value = getVariable(searchNode, varName);
+			var value = getVariable(searchNode, varName, srcNode);
 
 			if (value === undefined && opts.warnOfUnresolved === true) {
 				result.warn('Could not resolve variable "$' + varName + '" within "' + string + '"', { node: srcNode });

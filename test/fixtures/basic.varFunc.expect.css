@@ -1,5 +1,5 @@
 .color {
-	color: blue;
+	color: variablesFuncNodeTest;
 }
 
 @media (min-width: 600px), handheld and (orientation: landscape) {

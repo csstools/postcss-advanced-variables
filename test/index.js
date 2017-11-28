@@ -14,8 +14,11 @@ var tests = {
 		'basic:varFunc': {
 			message: 'supports basic usage with variables option as a function',
 			options: {
-				variables: function(name) {
+				variables: function(name, node) {
 					if (name === 'pass') {
+						if (node.type === 'decl' && node.parent.type === 'rule' && node.parent.selector === '.color' && node.parent.parent.type === 'root') {
+							return 'variablesFuncNodeTest';
+						}
 						return 'blue';
 					}
 					return undefined;

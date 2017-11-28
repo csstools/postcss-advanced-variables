@@ -136,7 +136,7 @@ grunt.initConfig({
 Type: `(Object|function)`  
 Default: `undefined`
 
-An object specifies your own global variables, or a function. If you set this option to a function and if a variable is not defined in the CSS being processed, the provided function will be called with one argument which is the name of the variable being requested.
+An object specifies your own global variables, or a function. If you set this option to a function and if a variable is not defined in the CSS being processed, the provided function will be called with two argument. The first argument is the name of the variable being resolved, and the second is the PostCSS node which contained the variable trying to be resolved.
 
 ```js
 require('postcss-advanced-variables')({
@@ -146,7 +146,7 @@ require('postcss-advanced-variables')({
 });
 /* Or as a function */
 require('postcss-advanced-variables')({
-	variables: function(name) {
+	variables: function(name, node) {
         if (name === 'site-width') {
             return '960px';
         }
