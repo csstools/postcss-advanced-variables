@@ -4,10 +4,24 @@ var tests = {
 			message: 'supports basic usage'
 		},
 		'basic:var': {
-			message: 'supports basic usage with variables',
+			message: 'supports basic usage with variables option as an object',
 			options: {
 				variables: {
 					pass: 'blue'
+				}
+			}
+		},
+		'basic:varFunc': {
+			message: 'supports basic usage with variables option as a function',
+			options: {
+				variables: function(name, node) {
+					if (name === 'pass') {
+						if (node.type === 'decl' && node.parent.type === 'rule' && node.parent.selector === '.color' && node.parent.parent.type === 'root') {
+							return 'variablesFuncNodeTest';
+						}
+						return 'blue';
+					}
+					return undefined;
 				}
 			}
 		},
@@ -16,9 +30,7 @@ var tests = {
 		},
 		'scss': {
 			message: 'supports scss interpolation',
-			options: {
-				syntax: require('postcss-scss')
-			}
+			syntax: require('postcss-scss')
 		}
 	}
 };
@@ -28,8 +40,10 @@ var dir   = './test/fixtures/';
 
 var fs      = require('fs');
 var path    = require('path');
-var plugin  = require('../');
+var postcss = require('postcss');
+var advancedVarsPlugin  = require('../');
 var test    = require('tape');
+var reporter    = require('postcss-reporter');
 
 Object.keys(tests).forEach(function (name) {
 	var parts = tests[name];
@@ -42,6 +56,7 @@ Object.keys(tests).forEach(function (name) {
 		fixtures.forEach(function (fixture) {
 			var message    = parts[fixture].message;
 			var options    = parts[fixture].options;
+			var syntax    = parts[fixture].syntax;
 			var warning    = parts[fixture].warning || 0;
 			var warningMsg = message + ' (# of warnings)';
 
@@ -67,15 +82,33 @@ Object.keys(tests).forEach(function (name) {
 				fs.writeFileSync(expectPath, expectCSS);
 			}
 
-			plugin.process(inputCSS, options).then(function (result) {
+			var plugins = [
+				advancedVarsPlugin(options),
+				reporter({ clearReportedMessages : false })
+			];
+
+			var processOptions = { from : inputPath };
+			if (syntax !== undefined) {
+				processOptions.syntax = syntax;
+			}
+
+			postcss(plugins).process(inputCSS, processOptions).then(function (result) {
 				var actualCSS = result.css;
 
 				if (debug) fs.writeFileSync(actualPath, actualCSS);
 
+				// Ignore differences between start of line indentions and empty lines (postcss v6 is outputting slightly different)
+				actualCSS = actualCSS.replace(/^[\s\n]+/gm, '');
+				expectCSS = expectCSS.replace(/^[\s\n]+/gm, '');
+
 				t.equal(actualCSS, expectCSS, message);
 
-				t.equal(result.warnings().length, warning, warningMsg);
+				var resultWarnings = result.warnings();
+				t.equal(resultWarnings.length, warning, warningMsg);
+			}).catch(function (error) {
+				console.log('Promise Rejected', error);
 			});
+
 		});
 	});
 });

@@ -1,7 +1,13 @@
 var postcss = require('postcss');
 
 module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
-	opts = opts || {};
+	opts = Object.assign(
+		{
+			warnOfUnresolved : true
+		},
+		opts
+	);
+	var isOptsVariablesFunc = typeof opts.variables === 'function';
 
 	// Matchers
 	// --------
@@ -25,9 +31,21 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	}
 
 	// $NAME => VALUE
-	function getVariable(node, name) {
-		var value = node.variables && name in node.variables ? node.variables[name] : node.parent && getVariable(node.parent, name);
-
+	function getVariable(node, name, srcNode) {
+		if (srcNode === undefined) {
+			srcNode = node;
+		}
+		var value;
+		if (node.variables !== undefined && name in node.variables) {
+			value = node.variables[name];
+		} else if (node.parent !== undefined) {
+			value = getVariable(node.parent, name, srcNode);
+		} else if (isOptsVariablesFunc === true) {
+			value = opts.variables(name, srcNode);
+			if (value === null) {
+				value = undefined; // Normalize to undefined.
+			}
+		}
 		return value;
 	}
 
@@ -44,10 +62,14 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	}
 
 	// 'Hello $NAME' => 'Hello VALUE'
-	function getVariableTransformedString(node, string) {
+	function getVariableTransformedString(searchNode, string, srcNode, result) {
 		return string.replace(variablesInString, function (match, before, name1, name2, name3) {
-			var value = getVariable(node, name1 || name2 || name3);
+			var varName = name1 || name2 || name3;
+			var value = getVariable(searchNode, varName, srcNode);
 
+			if (value === undefined && opts.warnOfUnresolved === true) {
+				result.warn('Could not resolve variable "$' + varName + '" within "' + string + '"', { node: srcNode });
+			}
 			return value === undefined ? match : before + value;
 		});
 	}
@@ -61,66 +83,58 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 	// -------
 
 	// run over every node
-	function each(parent) {
-		var index = -1;
-		var node;
+	function each(parent, result) {
+		parent.each(function(node) {
+			if (node.type === 'decl')        eachDecl(node, parent, result);
+			else if (node.type === 'rule')   eachRule(node, parent, result);
+			else if (node.type === 'atrule') eachAtRule(node, parent, result);
 
-		while (node = parent.nodes[++index]) {
-			if (node.type === 'decl')        index = eachDecl(node, parent, index);
-			else if (node.type === 'rule')   index = eachRule(node, parent, index);
-			else if (node.type === 'atrule') index = eachAtRule(node, parent, index);
-
-			if (node.nodes) each(node);
-		}
+			// Process child nodes if not removed (parent will be undefined if removed)
+			if (node.nodes !== undefined && node.nodes.length > 0 && node.parent !== undefined) {
+				each(node, result);
+			}
+		});
 	}
 
 	// PROPERTY: VALUE
-	function eachDecl(node, parent, index) {
+	function eachDecl(node, parent, result) {
 		// $NAME: VALUE
 		if (isVariableDeclaration.test(node.prop)) {
-			node.value = getVariableTransformedString(parent, node.value);
+			node.value = getVariableTransformedString(parent, node.value, node, result);
 
 			setVariable(parent, node.prop.slice(1), node.value);
 
 			node.remove();
-
-			--index;
 		} else {
-			node.prop = getVariableTransformedString(parent, node.prop);
+			node.prop = getVariableTransformedString(parent, node.prop, node, result);
 
-			node.value = getVariableTransformedString(parent, node.value);
+			node.value = getVariableTransformedString(parent, node.value, node, result);
 		}
-
-		// return index
-		return index;
 	}
 
 	// SELECTOR {RULE}
-	function eachRule(node, parent, index) {
-		node.selector = getVariableTransformedString(parent, node.selector);
-
-		return index;
+	function eachRule(node, parent, result) {
+		node.selector = getVariableTransformedString(parent, node.selector, node, result);
 	}
 
 	// @NAME PARAMS
-	function eachAtRule(node, parent, index) {
-		if (node.name === 'for') index = eachAtForRule(node, parent, index);
-		else if (node.name === 'each') index = eachAtEachRule(node, parent, index);
-		else if (node.name === 'if') index = eachAtIfRule(node, parent, index);
-		else if (node.name === 'media') node.params = getVariableTransformedString(parent, node.params);
-		else if (isKeyframesAtRule.test(node.name)) node.params = getVariableTransformedString(parent, node.params);
-		return index;
+	function eachAtRule(node, parent, result) {
+		if (node.name === 'for') 			eachAtForRule(node, parent, result);
+		else if (node.name === 'each')		eachAtEachRule(node, parent, result);
+		else if (node.name === 'if')		eachAtIfRule(node, parent, result);
+		else if (node.name === 'media') node.params = getVariableTransformedString(parent, node.params, node, result);
+		else if (isKeyframesAtRule.test(node.name)) node.params = getVariableTransformedString(parent, node.params, node, result);
 	}
 
 	// @for NAME from START to END by INCREMENT
-	function eachAtForRule(node, parent, index) {
+	function eachAtForRule(node, parent, result) {
 		// set params
 		var params = postcss.list.space(node.params);
 
 		var name      = params[0].trim().slice(1);
-		var start     = +getVariableTransformedString(node, params[2]);
-		var end       = +getVariableTransformedString(node, params[4]);
-		var increment = 6 in params && +getVariableTransformedString(node, params[6]) || 1;
+		var start     = +getVariableTransformedString(node, params[2], node, result);
+		var end       = +getVariableTransformedString(node, params[4], node, result);
+		var increment = 6 in params && +getVariableTransformedString(node, params[6], node, result) || 1;
 		var direction = start <= end ? 1 : -1;
 
 		// each iteration
@@ -132,34 +146,28 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 			var clone = node.clone({ parent: parent, variables: node.variables });
 
 			// process clone children
-			each(clone);
-
-			// increment index
-			index += clone.nodes.length;
-
-			// increment start
-			start += increment * direction;
+			each(clone, result);
 
 			// insert clone child nodes
 			parent.insertBefore(node, clone.nodes);
+
+			// increment start
+			start += increment * direction;
 		}
 
 		// remove node
 		node.remove();
-
-		// return index
-		return --index;
 	}
 
 	// @each NAME in ARRAY
-	function eachAtEachRule(node, parent, index) {
+	function eachAtEachRule(node, parent, result) {
 		// set params
 		var params = node.params.split(' in ');
 		var args = params[0].trim().split(' ');
 
 		var name  = args[0].trim().slice(1);
 		var iter  = args.length > 1 ? args[1].trim().slice(1) : null;
-		var array = getArrayedString(getVariableTransformedString(node, params.slice(1).join(' in ')), true);
+		var array = getArrayedString(getVariableTransformedString(node, params.slice(1).join(' in '), node, result), true);
 		var start = 0;
 		var end   = array.length;
 
@@ -175,33 +183,27 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 			var clone = node.clone({ parent: parent, variables: node.variables });
 
 			// process clone children
-			each(clone);
-
-			// increment index
-			index += clone.nodes.length;
-
-			// increment start
-			++start;
+			each(clone, result);
 
 			// insert clone child nodes
 			parent.insertBefore(node, clone.nodes);
+
+			// increment start
+			++start;
 		}
 
 		// remove node
 		node.remove();
-
-		// return index
-		return --index;
 	}
 
 	// @if LEFT OPERATOR RIGHT
-	function eachAtIfRule(node, parent, index) {
+	function eachAtIfRule(node, parent, result) {
 		// set params
 		var params = postcss.list.space(node.params);
 
-		var left     = getNumberIfValid(getVariableTransformedString(node, params[0]));
+		var left     = getNumberIfValid(getVariableTransformedString(node, params[0], node, result));
 		var operator = params[1];
-		var right    = getNumberIfValid(getVariableTransformedString(node, params[2]));
+		var right    = getNumberIfValid(getVariableTransformedString(node, params[2], node, result));
 
 		// set next node
 		var next = node.next();
@@ -216,10 +218,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 			operator === '>=' && left >= right
 		) {
 			// process node children
-			each(node);
-
-			// increment index
-			index += node.nodes.length;
+			each(node, result);
 
 			// insert child nodes
 			parent.insertBefore(node, node.nodes);
@@ -230,10 +229,7 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 			}
 		} else if (next && next.type === 'atrule' && next.name === 'else') {
 			// process next children
-			each(next);
-
-			// increment index
-			index += next.nodes.length;
+			each(next, result);
 
 			// insert child nodes
 			parent.insertBefore(node, next.nodes);
@@ -244,17 +240,19 @@ module.exports = postcss.plugin('postcss-advanced-variables', function (opts) {
 
 		// remove node
 		node.remove();
-
-		// return index
-		return --index;
 	}
 
-	return function (css) {
+	return function (css, result) {
 		// Initialize each global variable.
-		for (var name in opts.variables || {}) {
-			setVariable(css, name, opts.variables[name]);
+		if (
+			isOptsVariablesFunc === false &&
+			opts.variables !== undefined && opts.variables !== null
+		) {
+			for (var name in opts.variables) {
+				setVariable(css, name, opts.variables[name]);
+			}
 		}
 		// Begin processing each css node.
-		each(css);
+		each(css, result);
 	};
 });

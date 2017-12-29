@@ -133,16 +133,25 @@ grunt.initConfig({
 
 ### `variables`
 
-Type: `Object`  
-Default: `{}`
+Type: `(Object|function)`  
+Default: `undefined`
 
-Specifies your own global variables.
+An object specifies your own global variables, or a function. If you set this option to a function and if a variable is not defined in the CSS being processed, the provided function will be called with two argument. The first argument is the name of the variable being resolved, and the second is the PostCSS node which contained the variable trying to be resolved.
 
 ```js
 require('postcss-advanced-variables')({
 	variables: {
 		'site-width': '960px'
 	}
+});
+/* Or as a function */
+require('postcss-advanced-variables')({
+	variables: function(name, node) {
+        if (name === 'site-width') {
+            return '960px';
+        }
+        return undefined;
+    }
 });
 ```
 
@@ -159,6 +168,13 @@ require('postcss-advanced-variables')({
 	max-width: 960px;
 }
 ```
+
+### `warnOfUnresolved`
+Type: `boolean`  
+Default: `true`
+
+Warns of unused variables.
+
 
 [ci]: https://travis-ci.org/jonathantneal/postcss-advanced-variables
 [ci-img]: https://travis-ci.org/jonathantneal/postcss-advanced-variables.svg
