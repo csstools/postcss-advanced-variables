@@ -1,0 +1,23 @@
+@for $i from 1 to 5 {
+	.for-$(i)-from-1-to-5 {
+		content: "$i";
+	}
+}
+
+@for $i from 1 to 5 by 2 {
+	.for-$(i)-from-1-to-5-by-2 {
+		content: "$i";
+	}
+}
+
+@for $i from 6 to 1 by 2 {
+	.for-$(i)-from-6-to-1-by-2 {
+		content: "$i";
+	}
+}
+
+@each $i in (foo, bar, baz) {
+	.each-$(i)-in(foo,bar,baz) {
+		content: $i;
+	}
+}

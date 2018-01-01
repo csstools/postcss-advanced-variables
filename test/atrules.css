@@ -1,0 +1,23 @@
+$color: green !default;
+
+.is-color-green {
+	color: $color;
+}
+
+$min-width: 30em;
+$orientation: landscape;
+
+@media (min-width: $min-width), handheld and (orientation: $orientation) {
+	$color: white !default;
+
+	.is-color-green {
+		color: $color;
+	}
+}
+
+$animation-name: fadeIn;
+
+@keyframes $animation-name {}
+@-webkit-keyframes $animation-name {}
+@-moz-keyframes $animation-name {}
+@-o-keyframes $animation-name {}

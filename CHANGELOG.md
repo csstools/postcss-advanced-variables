@@ -1,5 +1,9 @@
 # Changes to PostCSS Advanced Variables
 
+### 2.1.0 (January 1, 2018)
+
+- Added: Support for `@mixin`, `@include`, and `@content`
+
 ### 2.0.0 (December 31, 2017)
 
 - Completely rewritten

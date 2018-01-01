@@ -176,9 +176,9 @@ require('postcss-advanced-variables')({
 
 ### `unresolved`
 
-The `unresolved` option lets you determine how unresolved variables should be
-handled. The available options are `throw`, `warn`, and `ignore`. The default
-option is to `throw`.
+The `unresolved` option lets you determine how unresolved variables and mixins
+should be handled. The available options are `throw`, `warn`, and `ignore`. The
+default option is to `throw`.
 
 
 ```js

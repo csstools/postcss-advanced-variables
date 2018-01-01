@@ -55,3 +55,15 @@ $dir: assets/images;
 		}
 	}
 }
+
+@mixin mixin-test-1($count: 3) {
+	@for $i from 1 to $count {
+		.for-$(i)-from-1-to$(count) {
+			content: "$i $count";
+		}
+	}
+}
+
+@include mixin-test-1;
+
+@include mixin-test-1(5);

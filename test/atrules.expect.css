@@ -1,0 +1,15 @@
+.is-color-green {
+	color: green;
+}
+
+@media (min-width: 30em), handheld and (orientation: landscape) {
+
+	.is-color-green {
+		color: green;
+	}
+}
+
+@keyframes fadeIn {}
+@-webkit-keyframes fadeIn {}
+@-moz-keyframes fadeIn {}
+@-o-keyframes fadeIn {}

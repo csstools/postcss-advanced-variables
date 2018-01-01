@@ -1,22 +1,33 @@
 module.exports = {
 	'postcss-advanced-variables': {
-		'basic': {
-			message: 'supports basic usage'
+		'default': {
+			message: 'supports !default usage'
 		},
-		'basic:var': {
-			message: 'supports { variables } usage',
+		'default:var': {
+			message: 'supports !default { variables } usage',
 			options: {
 				variables: {
-					pass: 'blue',
-					boolean: false
+					default: 'custom-value'
 				}
 			}
 		},
-		'basic:var-func': {
-			message: 'supports { variables() } usage',
+		'default:var-func': {
+			message: 'supports !default { variables() } usage',
 			options: {
-				variables: (name, node) => 'pass' === name ? 'blue' : 5
+				variables: (name, node) => 'custom-fn-value'
 			}
+		},
+		'if-else': {
+			message: 'supports @if/@else usage'
+		},
+		'for-each': {
+			message: 'supports @for/@each usage'
+		},
+		'atrules': {
+			message: 'supports generic at-rules usage'
+		},
+		'mixins': {
+			message: 'supports mixins usage'
 		},
 		'mixed': {
 			message: 'supports mixed usage'
@@ -37,6 +48,13 @@ module.exports = {
 				unresolved: 'ignore'
 			}
 		},
+		'unresolved-include:ignore': {
+			message: 'supports { unresolved: "ignore" } option with mixins',
+			expect: 'unresolved-include.expect.css',
+			options: {
+				unresolved: 'ignore'
+			}
+		},
 		'unresolved:throw': {
 			message: 'supports { unresolved: "throw" } option',
 			expect: 'unresolved.expect.css',
@@ -47,9 +65,27 @@ module.exports = {
 				reason: /^Could not resolve the variable/
 			}
 		},
+		'unresolved-include:throw': {
+			message: 'supports { unresolved: "throw" } option with mixins',
+			expect: 'unresolved-include.expect.css',
+			options: {
+				unresolved: 'throw'
+			},
+			error: {
+				reason: /^Could not resolve the mixin/
+			}
+		},
 		'unresolved:warn': {
 			message: 'supports { unresolved: "warn" } option',
 			expect: 'unresolved.expect.css',
+			options: {
+				unresolved: 'warn'
+			},
+			warning: 1
+		},
+		'unresolved-include:warn': {
+			message: 'supports { unresolved: "warn" } option with mixins',
+			expect: 'unresolved-include.expect.css',
 			options: {
 				unresolved: 'warn'
 			},

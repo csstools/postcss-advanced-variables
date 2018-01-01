@@ -1,0 +1,5 @@
+$default: "default-value" !default;
+
+.test-default {
+	content: $default;
+}

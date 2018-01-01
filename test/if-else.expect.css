@@ -1,0 +1,56 @@
+
+	.is-true-true {
+		content: "pass";
+	}
+
+.is-false-false {
+		content: "pass";
+	}
+
+.is-true-variable-true {
+		content: "pass";
+	}
+
+.is-1-equal-to-1 {
+		content: "pass";
+	}
+
+.is-1-not-equal-to-2 {
+		content: "pass";
+	}
+
+.is-1-not-equal-to-2 {
+		content: "pass";
+	}
+
+.is-1-less-than-2 {
+		content: "pass";
+	}
+
+.is-1-greater-than-0 {
+		content: "pass";
+	}
+
+.is-1-less-than-or-equal-to-1 {
+		content: "pass";
+	}
+
+.is-1-less-than-or-equal-to-2 {
+		content: "pass";
+	}
+
+.is-1-less-than-or-equal-to-0 {
+		content: "pass";
+	}
+
+.is-1-less-than-or-equal-to-1 {
+		content: "pass";
+	}
+
+.is-number-var-not-equal-to-1 {
+		content: "pass";
+	}
+
+.is-number-equal-to-5 {
+		content: "pass";
+	}
