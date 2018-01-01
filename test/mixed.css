@@ -3,7 +3,7 @@ $number: 3;
 
 @for $i from 1 to 5 by 2 {
 	@for $j from 3 to 1 {
-		.test-$(i)-$(j) {
+		.for-$(j)-from-3-to-1.for-$(j)-from-1-to-5-by-2 {
 			color: $pass;
 		}
 	}
@@ -11,7 +11,7 @@ $number: 3;
 
 @each $i in ((foo, bar), (baz, qux)) {
 	@each $j in $i {
-		.test-$j {
+		.each-$(j)-in($(i)).each-$(i)-in((foo,bar),(baz,qux)) {
 			color: $pass;
 		}
 	}
@@ -19,22 +19,12 @@ $number: 3;
 
 @for $i from 1 to 5 by 2 {
 	@if $i >= $number {
-		.test-atleast-$i {
+		.if-$(i)-is-atleast-$(number) {
 			color: $pass;
 		}
 	} @else {
-		.test-under-$i {
+		.if-$(i)-is-not-atleast-$(number) {
 			color: $pass;
-		}
-	}
-}
-
-@each $i in (1, 2, 3) {
-	@for $j from $i to 3 {
-		@if $i >= 3 {
-			.test-i-$i {
-				width: $j;
-			}
 		}
 	}
 }
@@ -43,8 +33,8 @@ $dir: assets/images;
 
 @each $i in (1, 2, 3) {
 	@for $j from $i to 3 {
-		@if $i >= 3 {
-			.test-i-$i {
+		@if $j >= 3 {
+			.if-$(j)-is-atleast-3.for-$(j)-from-$(i)-to-3.each-$(i)-in(1,2,3) {
 				background: url($dir/$j.png);
 			}
 		}

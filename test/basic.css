@@ -1,10 +1,10 @@
 $pass: green !default;
 $fail: red;
 $width: 600px;
-$number: 5;
+$number: 5 !default;
 $animName: fadeIn;
 
-.color {
+.is-color-green {
 	color: $pass;
 }
 
@@ -13,7 +13,7 @@ $orientation: landscape;
 @media (min-width: $width), handheld and (orientation: $orientation) {
 	$pass: white !default;
 
-	.color {
+	.is-color-green {
 		color: $pass;
 	}
 }
@@ -23,7 +23,7 @@ $orientation: landscape;
 		color: $pass;
 	}
 } @else {
-	.not-is-1-equal-to-1 {
+	.is-1-not-equal-to-1 {
 		color: $fail;
 	}
 }
@@ -33,17 +33,17 @@ $orientation: landscape;
 		color: $fail;
 	}
 } @else {
-	.not-is-1-equal-to-2 {
+	.is-1-not-equal-to-2 {
 		color: $pass;
 	}
 }
 
 @if $number == 1 {
-	.is-number-equal-to-1 {
+	.is-number-var-equal-to-1 {
 		color: $fail;
 	}
 } @else {
-	.not-number-equal-to-1 {
+	.is-number-var-not-equal-to-1 {
 		color: $pass;
 	}
 }
@@ -53,7 +53,7 @@ $orientation: landscape;
 		color: $pass;
 	}
 } @else {
-	.not-number-equal-to-5 {
+	.is-number-not-equal-to-5 {
 		color: $fail;
 	}
 }
@@ -143,19 +143,19 @@ $orientation: landscape;
 }
 
 @for $i from 1 to 5 by 2 {
-	.for-$i {
+	.for-$(i)-from-1-to-5-by-2 {
 		width: $(i)px;
 	}
 }
 
 @for $i from 6 to 1 by 2 {
-	.for-$i {
+	.for-$(i)-from-6-to-1-by-2 {
 		height: $(i)px;
 	}
 }
 
 @each $i in (foo, bar, baz) {
-	.test-$i {
+	.each-$(i)-in(foo,bar,baz) {
 		color: $pass;
 	}
 }
