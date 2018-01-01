@@ -1,0 +1,115 @@
+.is-color-green {
+	color: blue;
+}
+
+@media (min-width: 600px), handheld and (orientation: landscape) {
+
+	.is-color-green {
+		color: blue;
+	}
+}
+
+.is-true-true {
+		color: blue;
+	}
+
+.is-false-false {
+		color: blue;
+	}
+
+.is-false-variable-false {
+		color: blue;
+	}
+
+.is-1-equal-to-1 {
+		color: blue;
+	}
+
+.is-1-not-equal-to-2 {
+		color: blue;
+	}
+
+.is-number-var-not-equal-to-1 {
+		color: blue;
+	}
+
+.is-number-equal-to-5 {
+		color: blue;
+	}
+
+.is-1-not-equal-to-2 {
+		color: blue;
+	}
+
+.is-1-less-than-2 {
+		color: blue;
+	}
+
+.is-1-greater-than-0 {
+		color: blue;
+	}
+
+.is-1-less-than-or-equal-to-1 {
+		color: blue;
+	}
+
+.is-1-less-than-or-equal-to-2 {
+		color: blue;
+	}
+
+.is-1-less-than-or-equal-to-0 {
+		color: blue;
+	}
+
+.is-1-less-than-or-equal-to-1 {
+		color: blue;
+	}
+
+.for-1-from-1-to-5-by-2 {
+		width: 1px;
+	}
+
+.for-3-from-1-to-5-by-2 {
+		width: 3px;
+	}
+
+.for-5-from-1-to-5-by-2 {
+		width: 5px;
+	}
+
+.for-6-from-6-to-1-by-2 {
+		height: 6px;
+	}
+
+.for-4-from-6-to-1-by-2 {
+		height: 4px;
+	}
+
+.for-2-from-6-to-1-by-2 {
+		height: 2px;
+	}
+
+.each-foo-in(foo,bar,baz) {
+		color: blue;
+	}
+
+.each-bar-in(foo,bar,baz) {
+		color: blue;
+	}
+
+.each-baz-in(foo,bar,baz) {
+		color: blue;
+	}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeIn {}
+@-moz-keyframes fadeIn {}
+@-o-keyframes fadeIn {}

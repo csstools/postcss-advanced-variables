@@ -1,7 +1,55 @@
 {
   "name": "postcss-advanced-variables",
   "version": "2.0.0",
-  "description": "PostCSS plugin that enables Sass-like variables, conditionals, and iterators in CSS",
+  "description": "Use Sass-like variables, conditionals, and iterators in CSS",
+  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "license": "CC0-1.0",
+  "repository": "jonathantneal/postcss-advanced-variables",
+  "homepage": "https://github.com/jonathantneal/postcss-advanced-variables#readme",
+  "bugs": "https://github.com/jonathantneal/postcss-advanced-variables/issues",
+  "main": "index.bundle.js",
+  "module": "index.js",
+  "files": [
+    "index.js",
+    "index.bundle.js",
+    "lib"
+  ],
+  "scripts": {
+    "clean": "git clean -X -d -f",
+    "prepublishOnly": "npm test",
+    "pretest": "rollup -c .rollup.js",
+    "test": "echo 'Running tests...'; npm run test:js && npm run test:tape",
+    "test:js": "eslint index.js lib/*.js --cache",
+    "test:tape": "postcss-tape"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "dependencies": {
+    "postcss": "^6.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26",
+    "babel-eslint": "^8.1",
+    "babel-preset-env": "^1.6",
+    "echint": "^4.0",
+    "eslint": "^4.14",
+    "eslint-config-dev": "2.0",
+    "postcss-scss": "^1.0.2",
+    "postcss-tape": "2.2",
+    "pre-commit": "^1.2",
+    "rollup": "^0.53",
+    "rollup-plugin-babel": "^3.0"
+  },
+  "eslintConfig": {
+    "extends": "dev",
+    "parser": "babel-eslint",
+    "rules": {
+      "max-params": [
+        0
+      ]
+    }
+  },
   "keywords": [
     "postcss",
     "css",
@@ -15,34 +63,5 @@
     "eaches",
     "medias",
     "defaults"
-  ],
-  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
-  "license": "CC0-1.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jonathantneal/postcss-advanced-variables.git"
-  },
-  "bugs": {
-    "url": "https://github.com/jonathantneal/postcss-advanced-variables/issues"
-  },
-  "homepage": "https://github.com/jonathantneal/postcss-advanced-variables",
-  "dependencies": {
-    "postcss": "^6"
-  },
-  "devDependencies": {
-    "eslint": "^4.11.0",
-    "postcss-reporter": "^5.0.0",
-    "postcss-scss": "^1.0.0",
-    "tap-spec": "^4.1.0",
-    "tape": "^4.2.2"
-  },
-  "scripts": {
-    "lint": "eslint . --ignore-path .gitignore",
-    "fixtures": "tape test/*.js | tap-spec",
-    "test": "npm run lint && npm run fixtures"
-  },
-  "engines": {
-    "iojs": ">=2.0.0",
-    "node": ">=0.12.0"
-  }
+  ]
 }

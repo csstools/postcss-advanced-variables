@@ -1,0 +1,13 @@
+$color: green !default;
+
+.is-color-$color {
+	color: $color;
+}
+
+.is-color-$(color) {
+	color: $(color);
+}
+
+.is-color-#{$color} {
+	color: #{$color};
+}

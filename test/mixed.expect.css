@@ -1,0 +1,101 @@
+
+		.for-3-from-3-to-1.for-3-from-1-to-5-by-2 {
+			color: green;
+		}
+		.for-2-from-3-to-1.for-2-from-1-to-5-by-2 {
+			color: green;
+		}
+		.for-1-from-3-to-1.for-1-from-1-to-5-by-2 {
+			color: green;
+		}
+
+.for-3-from-3-to-1.for-3-from-1-to-5-by-2 {
+			color: green;
+		}
+
+.for-2-from-3-to-1.for-2-from-1-to-5-by-2 {
+			color: green;
+		}
+
+.for-1-from-3-to-1.for-1-from-1-to-5-by-2 {
+			color: green;
+		}
+
+.for-3-from-3-to-1.for-3-from-1-to-5-by-2 {
+			color: green;
+		}
+
+.for-2-from-3-to-1.for-2-from-1-to-5-by-2 {
+			color: green;
+		}
+
+.for-1-from-3-to-1.for-1-from-1-to-5-by-2 {
+			color: green;
+		}
+
+.each-foo-in((foo,bar)).each-(foo,bar)-in((foo,bar),(baz,qux)) {
+			color: green;
+		}
+
+.each-bar-in((foo,bar)).each-(foo,bar)-in((foo,bar),(baz,qux)) {
+			color: green;
+		}
+
+.each-baz-in((baz,qux)).each-(baz,qux)-in((foo,bar),(baz,qux)) {
+			color: green;
+		}
+
+.each-qux-in((baz,qux)).each-(baz,qux)-in((foo,bar),(baz,qux)) {
+			color: green;
+		}
+
+.if-1-is-not-atleast-3 {
+			color: green;
+		}
+
+.if-3-is-atleast-3 {
+			color: green;
+		}
+
+.if-5-is-atleast-3 {
+			color: green;
+		}
+
+.if-3-is-atleast-3.for-3-from-1-to-3.each-1-in(1,2,3) {
+				background: url(assets/images/3.png);
+			}
+
+.if-3-is-atleast-3.for-3-from-2-to-3.each-2-in(1,2,3) {
+				background: url(assets/images/3.png);
+			}
+
+.if-3-is-atleast-3.for-3-from-3-to-3.each-3-in(1,2,3) {
+				background: url(assets/images/3.png);
+			}
+
+:nth-child(0) {
+		color: red;
+	}
+
+:nth-child(1) {
+		color: white;
+	}
+
+:nth-child(2) {
+		color: blue;
+	}
+
+.test-i-1 {
+			background-image: url(assets/images/11.png);
+			content: "$dir";
+		}
+
+.test-i-1 {
+			background-image: url(assets/images/12.png);
+			content: "$dir";
+		}
+
+.test-i-1 {
+			background-image: url(assets/images/13.png);
+			content: "$dir";
+		}
