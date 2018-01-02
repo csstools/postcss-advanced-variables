@@ -1,0 +1,63 @@
+$test-var-1: "Helvetica Neue";
+$test-var-2: ("Helvetica Neue");
+$test-var-3: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$test-var-4: ("Helvetica Neue", Helvetica, Arial, sans-serif);
+$test-var-5: ("Helvetica Neue", (Helvetica, Arial), sans-serif);
+$test-var-6: (foo: "Helvetica Neue", bar: Helvetica, baz: Arial, qux: sans-serif);
+$test-var-7: (foo: "Helvetica Neue", (barfoo: Helvetica, barbar: Arial), baz: sans-serif);
+
+.test-var-1 {
+	font-family: $test-var-1;
+
+	@each $test-var-1-var in $test-var-1 {
+		font-family: $test-var-1-var;
+	}
+}
+
+.test-var-2 {
+	font-family: $test-var-2;
+
+	@each $test-var-2-var in $test-var-2 {
+		font-family: $test-var-2-var;
+	}
+}
+
+.test-var-3 {
+	font-family: $test-var-3;
+
+	@each $test-var-3-var in $test-var-3 {
+		font-family: $test-var-3-var;
+	}
+}
+
+.test-var-4 {
+	font-family: $test-var-4;
+
+	@each $test-var-4-var in $test-var-4 {
+		font-family: $test-var-4-var;
+	}
+}
+
+.test-var-5 {
+	font-family: $test-var-5;
+
+	@each $test-var-5-var in $test-var-5 {
+		font-family: $test-var-5-var;
+	}
+}
+
+.test-var-6 {
+	font-family: $test-var-6;
+
+	@each $test-var-6-var in $test-var-6 {
+		font-family: $test-var-6-var;
+	}
+}
+
+.test-var-7 {
+	font-family: $test-var-7;
+
+	@each $test-var-7-var in $test-var-7 {
+		font-family: $test-var-7-var;
+	}
+}

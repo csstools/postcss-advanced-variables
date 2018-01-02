@@ -1,0 +1,72 @@
+
+	.is-true-true {
+		content: "pass";
+	} @else {
+	.is-true-false {
+		content: "fail";
+	}
+} @else {
+	.is-false-false {
+		content: "pass";
+	}
+}
+
+.is-true-variable-true {
+		content: "pass";
+	} @else {
+	.is-true-variable-false {
+		content: "pass";
+	}
+}
+
+.is-1-equal-to-1 {
+		content: "pass";
+	} @else {
+	.is-1-not-equal-to-1 {
+		content: "fail";
+	}
+} @else {
+	.is-1-not-equal-to-2 {
+		content: "pass";
+	}
+}
+
+.is-1-not-equal-to-2 {
+		content: "pass";
+	}
+
+.is-1-less-than-2 {
+		content: "pass";
+	}
+
+.is-1-greater-than-0 {
+		content: "pass";
+	}
+
+.is-1-less-than-or-equal-to-1 {
+		content: "pass";
+	}
+
+.is-1-less-than-or-equal-to-2 {
+		content: "pass";
+	}
+
+.is-1-less-than-or-equal-to-0 {
+		content: "pass";
+	}
+
+.is-1-less-than-or-equal-to-1 {
+		content: "pass";
+	} @else {
+	.is-number-var-not-equal-to-1 {
+		content: "pass";
+	}
+}
+
+.is-number-equal-to-5 {
+		content: "pass";
+	} @else {
+	.is-number-not-equal-to-5 {
+		content: "fail";
+	}
+}

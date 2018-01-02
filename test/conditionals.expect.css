@@ -1,9 +1,7 @@
 
 	.is-true-true {
 		content: "pass";
-	}
-
-.is-false-false {
+	} .is-false-false {
 		content: "pass";
 	}
 
@@ -13,9 +11,7 @@
 
 .is-1-equal-to-1 {
 		content: "pass";
-	}
-
-.is-1-not-equal-to-2 {
+	} .is-1-not-equal-to-2 {
 		content: "pass";
 	}
 
@@ -45,9 +41,7 @@
 
 .is-1-less-than-or-equal-to-1 {
 		content: "pass";
-	}
-
-.is-number-var-not-equal-to-1 {
+	} .is-number-var-not-equal-to-1 {
 		content: "pass";
 	}
 

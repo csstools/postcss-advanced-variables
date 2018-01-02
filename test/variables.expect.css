@@ -1,0 +1,47 @@
+.test-var-1 {
+	font-family: "Helvetica Neue";
+		font-family: "Helvetica Neue"
+}
+
+.test-var-2 {
+	font-family: ("Helvetica Neue");
+		font-family: "Helvetica Neue"
+}
+
+.test-var-3 {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-family: "Helvetica Neue";
+		font-family: Helvetica;
+		font-family: Arial;
+		font-family: sans-serif
+}
+
+.test-var-4 {
+	font-family: ("Helvetica Neue", Helvetica, Arial, sans-serif);
+		font-family: "Helvetica Neue";
+		font-family: Helvetica;
+		font-family: Arial;
+		font-family: sans-serif
+}
+
+.test-var-5 {
+	font-family: ("Helvetica Neue", (Helvetica, Arial), sans-serif);
+		font-family: "Helvetica Neue";
+		font-family: (Helvetica,Arial);
+		font-family: sans-serif
+}
+
+.test-var-6 {
+	font-family: (foo: "Helvetica Neue", bar: Helvetica, baz: Arial, qux: sans-serif);
+		font-family: "Helvetica Neue";
+		font-family: Helvetica;
+		font-family: Arial;
+		font-family: sans-serif
+}
+
+.test-var-7 {
+	font-family: (foo: "Helvetica Neue", (barfoo: Helvetica, barbar: Arial), baz: sans-serif);
+		font-family: (barfoo:Helvetica,barbar:Arial);
+		font-family: "Helvetica Neue";
+		font-family: sans-serif
+}

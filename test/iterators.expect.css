@@ -2,20 +2,16 @@
 	.for-1-from-1-to-5 {
 		content: "1";
 	}
-
-.for-2-from-1-to-5 {
+	.for-2-from-1-to-5 {
 		content: "2";
 	}
-
-.for-3-from-1-to-5 {
+	.for-3-from-1-to-5 {
 		content: "3";
 	}
-
-.for-4-from-1-to-5 {
+	.for-4-from-1-to-5 {
 		content: "4";
 	}
-
-.for-5-from-1-to-5 {
+	.for-5-from-1-to-5 {
 		content: "5";
 	}
 
