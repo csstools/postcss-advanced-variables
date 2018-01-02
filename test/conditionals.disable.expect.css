@@ -1,0 +1,153 @@
+@if true {
+	.is-true-true {
+		content: "pass";
+	}
+} @else {
+	.is-true-false {
+		content: "fail";
+	}
+}
+
+@if false {
+	.is-false-true {
+		content: "fail";
+	}
+} @else {
+	.is-false-false {
+		content: "pass";
+	}
+}
+
+@if $if-boolean {
+	.is-true-variable-true {
+		content: "pass";
+	}
+} @else {
+	.is-true-variable-false {
+		content: "pass";
+	}
+}
+
+@if 1 == 1 {
+	.is-1-equal-to-1 {
+		content: "pass";
+	}
+} @else {
+	.is-1-not-equal-to-1 {
+		content: "fail";
+	}
+}
+
+@if 1 == 2 {
+	.is-1-equal-to-2 {
+		content: "fail";
+	}
+} @else {
+	.is-1-not-equal-to-2 {
+		content: "pass";
+	}
+}
+
+@if 1 != 1 {
+	.is-1-not-equal-to-1 {
+		content: "fail";
+	}
+}
+
+@if 1 != 2 {
+	.is-1-not-equal-to-2 {
+		content: "pass";
+	}
+}
+
+@if 1 < 0 {
+	.is-1-less-than-0 {
+		content: "fail";
+	}
+}
+
+@if 1 < 1 {
+	.is-1-less-than-1 {
+		content: "fail";
+	}
+}
+
+@if 1 < 2 {
+	.is-1-less-than-2 {
+		content: "pass";
+	}
+}
+
+@if 1 > 0 {
+	.is-1-greater-than-0 {
+		content: "pass";
+	}
+}
+
+@if 1 > 1 {
+	.is-1-greater-than-1 {
+		content: "fail";
+	}
+}
+
+@if 1 > 2 {
+	.is-1-greater-than-2 {
+		content: "fail";
+	}
+}
+
+@if 1 <= 0 {
+	.is-1-less-than-or-equal-to-0 {
+		content: "fail";
+	}
+}
+
+@if 1 <= 1 {
+	.is-1-less-than-or-equal-to-1 {
+		content: "pass";
+	}
+}
+
+@if 1 <= 2 {
+	.is-1-less-than-or-equal-to-2 {
+		content: "pass";
+	}
+}
+
+@if 1 >= 0 {
+	.is-1-less-than-or-equal-to-0 {
+		content: "pass";
+	}
+}
+
+@if 1 >= 1 {
+	.is-1-less-than-or-equal-to-1 {
+		content: "pass";
+	}
+}
+
+@if 1 >= 2 {
+	.is-1-less-than-or-equal-to-2 {
+		content: "fail";
+	}
+}
+
+@if $number == 1 {
+	.is-number-var-equal-to-1 {
+		content: "fail";
+	}
+} @else {
+	.is-number-var-not-equal-to-1 {
+		content: "pass";
+	}
+}
+
+@if $number == 5 {
+	.is-number-equal-to-5 {
+		content: "pass";
+	}
+} @else {
+	.is-number-not-equal-to-5 {
+		content: "fail";
+	}
+}

@@ -17,17 +17,47 @@ module.exports = {
 				variables: (name, node) => 'custom-fn-value'
 			}
 		},
-		'if-else': {
-			message: 'supports @if/@else usage'
+		'variables': {
+			message: 'supports variables usage'
 		},
-		'for-each': {
-			message: 'supports @for/@each usage'
+		'conditionals': {
+			message: 'supports conditionals (@if, @else) usage'
+		},
+		'conditionals:disable': {
+			message: 'supports disabled @if and @else usage',
+			options: {
+				disable: '@if, @else'
+			}
+		},
+		'conditionals:disable-if': {
+			message: 'supports disabled @if usage',
+			options: {
+				disable: '@if'
+			}
+		},
+		'conditionals:disable-else': {
+			message: 'supports disabled @else usage',
+			options: {
+				disable: '@else'
+			}
+		},
+		'iterators': {
+			message: 'supports iterators (@for, @each) usage'
 		},
 		'atrules': {
 			message: 'supports generic at-rules usage'
 		},
 		'mixins': {
 			message: 'supports mixins usage'
+		},
+		'imports': {
+			message: 'supports @import usage'
+		},
+		'imports-alt': {
+			message: 'supports @import with { importPaths } usage',
+			options: {
+				importPaths: 'test/imports'
+			}
 		},
 		'mixed': {
 			message: 'supports mixed usage'

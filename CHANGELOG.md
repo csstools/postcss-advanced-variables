@@ -1,5 +1,11 @@
 # Changes to PostCSS Advanced Variables
 
+### 2.2.0 (January 2, 2018)
+
+- Added: Support for `@import`
+- Added: `disable` option to conditionally disable any feature(s)
+- Fixed: How iterator arrays and objects are treated
+
 ### 2.1.0 (January 1, 2018)
 
 - Added: Support for `@mixin`, `@include`, and `@content`

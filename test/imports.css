@@ -1,0 +1,7 @@
+$pass: "pass";
+
+@import "imports/import-1";
+@import 'imports/import-1';
+@import url("imports/import-1");
+@import url('imports/import-1');
+@import url(imports/import-1);
