@@ -14,7 +14,7 @@ module.exports = {
 		'default:var-func': {
 			message: 'supports !default { variables() } usage',
 			options: {
-				variables: (name, node) => 'custom-fn-value'
+				variables: () => 'custom-fn-value'
 			}
 		},
 		'variables': {
@@ -58,6 +58,9 @@ module.exports = {
 			options: {
 				importPaths: 'test/imports'
 			}
+		},
+		'imports-media': {
+			message: 'supports @import with media usage'
 		},
 		'mixed': {
 			message: 'supports mixed usage'

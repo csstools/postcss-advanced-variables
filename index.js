@@ -13,6 +13,9 @@ export default postcss.plugin('postcss-advanced-variables', opts => (root, resul
 	const unresolvedOpt = String(Object(opts).unresolved || 'throw').toLowerCase();
 	const variablesOpt  = Object(opts).variables;
 	const importCache   = Object(Object(opts).importCache);
+	const importFilter  = Object(opts).filter || (id => {
+		return !matchProtocol.test(id);
+	});
 	const importPaths   = [].concat(Object(opts).importPaths || []);
 	const importPromise = [];
 	const importResolve = Object(opts).resolve || (
@@ -24,6 +27,7 @@ export default postcss.plugin('postcss-advanced-variables', opts => (root, resul
 	transformNode(root, {
 		result,
 		importCache,
+		importFilter,
 		importPaths,
 		importPromise,
 		importResolve,
@@ -35,3 +39,5 @@ export default postcss.plugin('postcss-advanced-variables', opts => (root, resul
 
 	return Promise.all(importPromise);
 });
+
+const matchProtocol = /^(?:[A-z]+:)?\/\//;
