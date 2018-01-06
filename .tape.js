@@ -14,7 +14,7 @@ module.exports = {
 		'default:var-func': {
 			message: 'supports !default { variables() } usage',
 			options: {
-				variables: (name, node) => 'custom-fn-value'
+				variables: () => 'custom-fn-value'
 			}
 		},
 		'variables': {
