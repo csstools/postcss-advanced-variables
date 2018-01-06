@@ -514,6 +514,21 @@ require('postcss-advanced-variables')({
 });
 ```
 
+#### importFilter
+
+The `importFilter` option determines whether an import will be inlined.
+
+The `importFilter` option can be a function or an regular expression.
+
+By default, imports are ignored if they begin with a protocol or
+protocol-relative slashes (`//`).
+
+```js
+require('postcss-advanced-variables')({
+  importPaths: ['path/to/files', 'another/path/to/files']
+});
+```
+
 #### importRoot
 
 The `importRoot` option defines the root directory used by imports when the
