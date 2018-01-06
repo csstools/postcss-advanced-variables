@@ -59,6 +59,9 @@ module.exports = {
 				importPaths: 'test/imports'
 			}
 		},
+		'imports-media': {
+			message: 'supports @import with media usage'
+		},
 		'mixed': {
 			message: 'supports mixed usage'
 		},
