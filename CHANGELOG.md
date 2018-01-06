@@ -1,5 +1,12 @@
 # Changes to PostCSS Advanced Variables
 
+### 2.3.0 (January 6, 2018)
+
+- Added: `importFilter` option to accept or ignore imports by function or regex
+- Added: Support for media parameters after `@import` rules
+- Added: Support for case-insensitive at-rules
+- Fixed: Protocol and protocol-less imports are ignored
+
 ### 2.2.0 (January 2, 2018)
 
 - Added: Support for `@import`
