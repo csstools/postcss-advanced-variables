@@ -26,14 +26,14 @@
     "node": ">=4.0.0"
   },
   "dependencies": {
-    "@csstools/sass-import-resolve": "^1.0.0",
-    "babel-polyfill": "^6.26.0",
+    "@csstools/sass-import-resolve": "^1.0",
     "postcss": "^6.0"
   },
   "devDependencies": {
     "babel-core": "^6.26",
     "babel-eslint": "^8.2",
-    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-array-includes": "^2.0.3",
+    "babel-plugin-external-helpers": "^6.22",
     "babel-preset-env": "^1.6",
     "echint": "^4.0",
     "eslint": "^4.17",

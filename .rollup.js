@@ -6,6 +6,7 @@ export default {
 	plugins: [
 		babel({
 			plugins: [
+				'array-includes',
 				'external-helpers'
 			],
 			presets: [
