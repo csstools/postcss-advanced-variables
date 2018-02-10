@@ -5,21 +5,28 @@
 	border-radius: 1em;
 }
 
-@mixin mixin-test-2($radius) {
+@mixin mixin-test-2() {
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-ms-border-radius: 1em;
+	border-radius: 1em;
+}
+
+@mixin mixin-test-3($radius) {
 	-webkit-border-radius: $radius;
 	-moz-border-radius: $radius;
 	-ms-border-radius: $radius;
 	border-radius: $radius;
 }
 
-@mixin mixin-test-3($radius: 1em) {
+@mixin mixin-test-4($radius: 1em) {
 	-webkit-border-radius: $radius;
 	-moz-border-radius: $radius;
 	-ms-border-radius: $radius;
 	border-radius: $radius;
 }
 
-@mixin mixin-test-4($min-width: 30em) {
+@mixin mixin-test-5($min-width: 30em) {
 	@media (min-width: $min-width) {
 		@content;
 	}
@@ -30,25 +37,29 @@
 }
 
 .test-2 {
-	@include mixin-test-2(1em);
+	@include mixin-test-2();
 }
 
-.test-3a {
-	@include mixin-test-3;
-}
-
-.test-3b {
-	@include mixin-test-3(2em);
+.test-3 {
+	@include mixin-test-3(1em);
 }
 
 .test-4a {
-	@include mixin-test-4 {
+	@include mixin-test-4;
+}
+
+.test-4b {
+	@include mixin-test-4(2em);
+}
+
+.test-5a {
+	@include mixin-test-5 {
 		min-width: $min-width;
 	}
 }
 
-.test-4b {
-	@include mixin-test-4(60em) {
+.test-5b {
+	@include mixin-test-5(60em) {
 		min-width: $min-width;
 	}
 }
