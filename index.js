@@ -1,5 +1,4 @@
 // tooling
-import 'babel-polyfill';
 import transformNode from './lib/transform-node';
 import postcss from 'postcss';
 import resolve from '@csstools/sass-import-resolve';

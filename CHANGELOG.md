@@ -1,5 +1,11 @@
 # Changes to PostCSS Advanced Variables
 
+### 2.3.1 (February 10, 2018)
+
+- Added: `babel-plugin-array-includes` instead of `babel-polyfill`
+- Fixed: `@mixin` rules to support being declared with empty parens
+- Noted: Recommend `postcss-scss-syntax` to best support variable interpolation
+
 ### 2.3.0 (January 6, 2018)
 
 - Added: `importFilter` option to accept or ignore imports by function or regex

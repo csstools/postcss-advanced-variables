@@ -12,27 +12,34 @@
 	border-radius: 1em;
 }
 
-.test-3a {
+.test-3 {
 	-webkit-border-radius: 1em;
 	-moz-border-radius: 1em;
 	-ms-border-radius: 1em;
 	border-radius: 1em;
 }
 
-.test-3b {
+.test-4a {
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-ms-border-radius: 1em;
+	border-radius: 1em;
+}
+
+.test-4b {
 	-webkit-border-radius: 2em;
 	-moz-border-radius: 2em;
 	-ms-border-radius: 2em;
 	border-radius: 2em;
 }
 
-.test-4a {
+.test-5a {
 	@media (min-width: 30em) {
 		min-width: 30em;
 	}
 }
 
-.test-4b {
+.test-5b {
 	@media (min-width: 60em) {
 		min-width: 60em;
 	}
