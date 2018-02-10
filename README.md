@@ -160,6 +160,9 @@ body {
 }
 ```
 
+*Note: To use `#{$var-name}` without issues, you will need to include the
+[PostCSS SCSS Syntax].
+
 In that example, `$font-size`, `$font-stack`, and `$primary-color` are replaced
 with their values.
 
@@ -564,6 +567,7 @@ require('postcss-advanced-variables')({
 
 [PostCSS Advanced Variables]: https://github.com/jonathantneal/postcss-advanced-variables
 [PostCSS]: https://github.com/postcss/postcss
+[PostCSS SCSS Syntax]: https://github.com/postcss/postcss-scss
 [Gulp PostCSS]: https://github.com/postcss/gulp-postcss
 [Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
 [Sass Import Resolve Specification]: https://jonathantneal.github.io/sass-import-resolve/
