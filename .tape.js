@@ -71,6 +71,12 @@ module.exports = {
 		'imports-media': {
 			message: 'supports @import with media usage'
 		},
+		'import-mixins': {
+			message: 'supports @import with mixin usage'
+		},
+		'import-variables': {
+			message: 'supports @import with variable usage'
+		},
 		'mixed': {
 			message: 'supports mixed usage'
 		},
