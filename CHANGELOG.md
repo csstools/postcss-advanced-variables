@@ -1,8 +1,12 @@
 # Changes to PostCSS Advanced Variables
 
+### 2.3.2 (February 10, 2018)
+
+- Fixed: imports failing when `from` is missing
+
 ### 2.3.1 (February 10, 2018)
 
-- Added: `babel-plugin-array-includes` instead of `babel-polyfill`
+- Added: `babel-plugin-array-includes` instead of `babel-polyfill` for publish
 - Fixed: `@mixin` rules to support being declared with empty parens
 - Noted: Recommend `postcss-scss-syntax` to best support variable interpolation
 
