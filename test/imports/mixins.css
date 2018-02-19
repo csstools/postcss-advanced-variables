@@ -1,5 +1,3 @@
-@import 'imports/mixins';
-
 @mixin mixin-test-1 {
 	-webkit-border-radius: 1em;
 	-moz-border-radius: 1em;
