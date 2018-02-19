@@ -53,6 +53,15 @@ module.exports = {
 		'imports': {
 			message: 'supports @import usage'
 		},
+		'imports:no-from': {
+			message: 'supports @import usage with no `from`',
+			processOptions: {
+				from: null
+			},
+			options: {
+				importRoot: 'test'
+			}
+		},
 		'imports-alt': {
 			message: 'supports @import with { importPaths } usage',
 			options: {
