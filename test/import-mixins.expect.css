@@ -1,0 +1,6 @@
+.test-1 {
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-ms-border-radius: 1em;
+	border-radius: 1em;
+}

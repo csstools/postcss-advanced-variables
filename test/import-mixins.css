@@ -1,0 +1,5 @@
+@import 'imports/mixins';
+
+.test-1 {
+	@include mixin-test-1;
+}

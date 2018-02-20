@@ -16,27 +16,22 @@ export default postcss.plugin('postcss-advanced-variables', opts => (root, resul
 		return !matchProtocol.test(id);
 	});
 	const importPaths   = [].concat(Object(opts).importPaths || []);
-	const importPromise = [];
 	const importResolve = Object(opts).resolve || (
 		(id, cwd) => resolve(id, { cwd, readFile: true, cache: importCache })
 	);
 	const importRoot    = Object(opts).importRoot || process.cwd();
 
-	// transform all nodes
-	transformNode(root, {
+	return transformNode(root, {
 		result,
 		importCache,
 		importFilter,
 		importPaths,
-		importPromise,
 		importResolve,
 		importRoot,
 		transform: transformOpt,
 		unresolved: unresolvedOpt,
 		variables: variablesOpt
 	});
-
-	return Promise.all(importPromise);
 });
 
 const matchProtocol = /^(?:[A-z]+:)?\/\//;

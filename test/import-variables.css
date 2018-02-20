@@ -1,0 +1,5 @@
+@import 'imports/variables.css';
+
+.import-1 {
+	content: $pass;
+}
