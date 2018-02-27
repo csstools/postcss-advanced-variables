@@ -1,6 +1,6 @@
 {
   "name": "postcss-advanced-variables",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "Use Sass-like variables, conditionals, and iterators in CSS",
   "author": "Jonathan Neal <jonathantneal@hotmail.com>",
   "license": "CC0-1.0",
@@ -48,6 +48,9 @@
     "extends": "dev",
     "parser": "babel-eslint",
     "rules": {
+      "consistent-return": [
+        0
+      ],
       "max-params": [
         0
       ]

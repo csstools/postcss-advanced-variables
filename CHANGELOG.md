@@ -1,5 +1,9 @@
 # Changes to PostCSS Advanced Variables
 
+### 2.3.3 (February 10, 2018)
+
+- Fixed: asynchronous transforms to allow for imported mixins and variables
+
 ### 2.3.2 (February 10, 2018)
 
 - Fixed: imports failing when `from` is missing
