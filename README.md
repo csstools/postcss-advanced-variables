@@ -528,7 +528,7 @@ protocol-relative slashes (`//`).
 
 ```js
 require('postcss-advanced-variables')({
-  importPaths: ['path/to/files', 'another/path/to/files']
+  importFilter: id => !someRegexp.test(id);
 });
 ```
 
