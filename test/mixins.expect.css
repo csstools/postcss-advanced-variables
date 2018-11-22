@@ -12,11 +12,18 @@
 	border-radius: 1em;
 }
 
-.test-3 {
+.test-3a {
 	-webkit-border-radius: 1em;
 	-moz-border-radius: 1em;
 	-ms-border-radius: 1em;
 	border-radius: 1em;
+}
+
+.test-3b {
+	-webkit-border-radius: 2em;
+	-moz-border-radius: 2em;
+	-ms-border-radius: 2em;
+	border-radius: 2em;
 }
 
 .test-4a {
