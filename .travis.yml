@@ -1,9 +1,11 @@
-# https://docs.travis-ci.com/user/travis-lint
+# https://docs.travis-ci.com/user/languages/javascript-with-nodejs/
 
 language: node_js
 
 node_js:
-  - 4
+  - 10
+  - 8
+  - 6
 
 install:
   - npm install --ignore-scripts
