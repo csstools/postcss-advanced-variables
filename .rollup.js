@@ -7,10 +7,10 @@ export default {
 		babel({
 			plugins: [
 				'array-includes',
-				'external-helpers'
+				'@babel/external-helpers'
 			],
 			presets: [
-				['env', { modules: false, targets: { node: '4' } }]
+				['@babel/env', { modules: false, targets: { node: '6' } }]
 			]
 		})
 	]

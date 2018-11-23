@@ -17,44 +17,34 @@
   "scripts": {
     "prepublishOnly": "npm test",
     "pretest": "rollup -c .rollup.js --silent",
-    "test": "echo 'Running tests...'; npm run test:ec && npm run test:js && npm run test:tape",
-    "test:ec": "echint --ignore index.bundle.js test",
+    "test": "npm run test:js && npm run test:tape",
     "test:js": "eslint *.js --cache --ignore-path .gitignore --quiet",
     "test:tape": "postcss-tape"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "dependencies": {
-    "@csstools/sass-import-resolve": "^1",
-    "postcss": "^6"
+    "@csstools/sass-import-resolve": "^1.0.0",
+    "postcss": "^7.0.6"
   },
   "devDependencies": {
-    "babel-core": "^6",
-    "babel-eslint": "^8",
-    "babel-plugin-array-includes": "^2",
-    "babel-plugin-external-helpers": "^6",
-    "babel-preset-env": "^1",
-    "echint": "^4",
-    "eslint": "^4",
-    "eslint-config-dev": "^2",
-    "postcss-scss": "^1",
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-external-helpers": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "babel-eslint": "^10",
+    "babel-plugin-array-includes": "^2.0.3",
+    "eslint": "^5.9.0",
+    "eslint-config-dev": "^2.0.0",
+    "postcss-scss": "^2.0.0",
     "postcss-tape": "2.2",
-    "pre-commit": "^1",
-    "rollup": "^0",
-    "rollup-plugin-babel": "^3"
+    "pre-commit": "^1.2.2",
+    "rollup": "^0.67.3",
+    "rollup-plugin-babel": "^4.0.3"
   },
   "eslintConfig": {
     "extends": "dev",
-    "parser": "babel-eslint",
-    "rules": {
-      "consistent-return": [
-        0
-      ],
-      "max-params": [
-        0
-      ]
-    }
+    "parser": "babel-eslint"
   },
   "keywords": [
     "postcss",
