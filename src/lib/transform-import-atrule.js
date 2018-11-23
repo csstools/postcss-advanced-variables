@@ -13,8 +13,8 @@ export default function transformImportAtrule(rule, opts) {
 		const { id, media, cwf, cwd } = getImportOpts(rule, opts);
 
 		if (
-			(opts.importFilter instanceof Function && opts.importFilter(id, media)) ||
-			(opts.importFilter instanceof RegExp && opts.importFilter.test(id))
+			opts.importFilter instanceof Function && opts.importFilter(id, media) ||
+			opts.importFilter instanceof RegExp && opts.importFilter.test(id)
 		) {
 			const cwds = [cwd].concat(opts.importPaths);
 

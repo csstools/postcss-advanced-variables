@@ -12,11 +12,11 @@ export default postcss.plugin('postcss-advanced-variables', opts => (root, resul
 	const unresolvedOpt = String(Object(opts).unresolved || 'throw').toLowerCase();
 	const variablesOpt  = Object(opts).variables;
 	const importCache   = Object(Object(opts).importCache);
-	const importFilter  = Object(opts).filter || (id => {
+	const importFilter  = Object(opts).importFilter || (id => {
 		return !matchProtocol.test(id);
 	});
 	const importPaths   = [].concat(Object(opts).importPaths || []);
-	const importResolve = Object(opts).resolve || (
+	const importResolve = Object(opts).importResolve || (
 		(id, cwd) => resolve(id, { cwd, readFile: true, cache: importCache })
 	);
 	const importRoot    = Object(opts).importRoot || process.cwd();

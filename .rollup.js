@@ -1,16 +1,18 @@
 import babel from 'rollup-plugin-babel';
 
 export default {
-	input: 'index.js',
-	output: { file: 'index.bundle.js', format: 'cjs' },
+	input: 'src/index.js',
+	output: [
+		{ file: 'index.js', format: 'cjs' },
+		{ file: 'index.mjs', format: 'esm' }
+	],
 	plugins: [
 		babel({
 			plugins: [
-				'array-includes',
-				'@babel/external-helpers'
+				'array-includes'
 			],
 			presets: [
-				['@babel/env', { modules: false, targets: { node: '6' } }]
+				['@babel/env', { targets: { node: 6 } }]
 			]
 		})
 	]

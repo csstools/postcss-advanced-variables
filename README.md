@@ -1,9 +1,8 @@
 # PostCSS Advanced Variables [<img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right">][postcss]
 
 [![NPM Version][npm-img]][npm-url]
-[![Linux Build Status][cli-img]][cli-url]
-[![Windows Build Status][win-img]][win-url]
-[![Gitter Chat][git-img]][git-url]
+[![Build Status][cli-img]][cli-url]
+[![Support Chat][git-img]][git-url]
 
 [PostCSS Advanced Variables] lets you use Sass-like variables, conditionals,
 and iterators in CSS.
@@ -556,18 +555,16 @@ require('postcss-advanced-variables')({
 });
 ```
 
-[npm-url]: https://www.npmjs.com/package/postcss-advanced-variables
-[npm-img]: https://img.shields.io/npm/v/postcss-advanced-variables.svg
-[cli-url]: https://travis-ci.org/jonathantneal/postcss-advanced-variables
 [cli-img]: https://img.shields.io/travis/jonathantneal/postcss-advanced-variables.svg
-[win-url]: https://ci.appveyor.com/project/jonathantneal/postcss-advanced-variables
-[win-img]: https://img.shields.io/appveyor/ci/jonathantneal/postcss-advanced-variables.svg
-[git-url]: https://gitter.im/postcss/postcss
+[cli-url]: https://travis-ci.org/jonathantneal/postcss-advanced-variables
 [git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
+[git-url]: https://gitter.im/postcss/postcss
+[npm-img]: https://img.shields.io/npm/v/postcss-advanced-variables.svg
+[npm-url]: https://www.npmjs.com/package/postcss-advanced-variables
 
-[PostCSS Advanced Variables]: https://github.com/jonathantneal/postcss-advanced-variables
-[PostCSS]: https://github.com/postcss/postcss
-[PostCSS SCSS Syntax]: https://github.com/postcss/postcss-scss
 [Gulp PostCSS]: https://github.com/postcss/gulp-postcss
 [Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
+[PostCSS]: https://github.com/postcss/postcss
+[PostCSS Advanced Variables]: https://github.com/jonathantneal/postcss-advanced-variables
+[PostCSS SCSS Syntax]: https://github.com/postcss/postcss-scss
 [Sass Import Resolve Specification]: https://jonathantneal.github.io/sass-import-resolve/

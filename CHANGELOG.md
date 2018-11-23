@@ -1,5 +1,11 @@
 # Changes to PostCSS Advanced Variables
 
+### 3.0.0 (November 22, 2018)
+
+- Fixed: transform variables in default value of mixins
+- Updated: `postcss` to 7.0.6 (major)
+- Changed: Support for Node 6+
+
 ### 2.3.3 (February 10, 2018)
 
 - Fixed: asynchronous transforms to allow for imported mixins and variables
