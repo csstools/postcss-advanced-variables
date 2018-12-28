@@ -520,14 +520,20 @@ require('postcss-advanced-variables')({
 
 The `importFilter` option determines whether an import will be inlined.
 
-The `importFilter` option can be a function or an regular expression.
+The value can be a function or an regular expression. When
+providing a function, it is called with a single string argument `id`
+and returns true when the import should be inlined. When providing a
+regular expression, if the `id` matches the expression, the import will
+be inlined.
 
 By default, imports are ignored if they begin with a protocol or
 protocol-relative slashes (`//`).
 
 ```js
 require('postcss-advanced-variables')({
-  importPaths: ['path/to/files', 'another/path/to/files']
+  importFilter: (id) => {
+    return ['ignore', 'these', 'imports'].contains(id);
+  }
 });
 ```
 
