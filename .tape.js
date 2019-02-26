@@ -89,6 +89,15 @@ module.exports = {
 				syntax: require('postcss-scss')
 			}
 		},
+		'import-scss': {
+			message: 'supports @import with scss syntax',
+			source: 'imports-scss.scss',
+			expect: 'imports-scss.expect.scss',
+			result: 'imports-scss.result.scss',
+			processOptions: {
+				syntax: require('postcss-scss')
+			}
+		},
 		'unresolved:ignore': {
 			message: 'supports { unresolved: "ignore" } option',
 			expect: 'unresolved.expect.css',

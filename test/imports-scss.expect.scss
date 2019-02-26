@@ -1,0 +1,21 @@
+.scss {
+	.nested {
+		// inline comment
+		content: "pass";
+	}
+
+	.name {
+		content: "pass";
+
+		.mixin {
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-ms-border-radius: 1em;
+	border-radius: 1em;
+		}
+	}
+}
+
+.imported {
+	content: "name";
+}

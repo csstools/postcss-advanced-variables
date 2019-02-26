@@ -1,0 +1,7 @@
+$pass: "pass";
+
+@import "imports/scss";
+
+.imported {
+	content: "$(name)";
+}
