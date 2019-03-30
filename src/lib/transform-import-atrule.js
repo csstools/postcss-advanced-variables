@@ -12,6 +12,10 @@ export default function transformImportAtrule(rule, opts) {
 		// @import options
 		const { id, media, cwf, cwd } = getImportOpts(rule, opts);
 
+		// PostCSS options
+		const options = opts.result.opts;
+		const parser = options.parser || options.syntax && options.syntax.parse || null;
+
 		if (
 			opts.importFilter instanceof Function && opts.importFilter(id, media) ||
 			opts.importFilter instanceof RegExp && opts.importFilter.test(id)
@@ -28,7 +32,7 @@ export default function transformImportAtrule(rule, opts) {
 
 			return importPromise.then(
 				// promise the processed file
-				({ file, contents }) => processor.process(contents, { from: file }).then(
+				({ file, contents }) => processor.process(contents, { from: file, parser: parser }).then(
 						({ root }) => {
 							// push a dependency message
 							opts.result.messages.push({ type: 'dependency', file: file, parent: cwf });

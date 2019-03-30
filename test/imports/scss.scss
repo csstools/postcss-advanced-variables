@@ -1,0 +1,18 @@
+@import "./mixins";
+
+$name: name;
+
+.scss {
+	.nested {
+		// inline comment
+		content: $pass;
+	}
+
+	.#{$name} {
+		content: $pass;
+
+		.mixin {
+			@include mixin-test-1;
+		}
+	}
+}
