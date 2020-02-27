@@ -1,5 +1,9 @@
 # Changes to PostCSS Advanced Variables
 
+### 3.0.1 (February 27, 2020)
+
+- Fixed: parsing the contents of imported stylesheets (#71)
+
 ### 3.0.0 (November 22, 2018)
 
 - Fixed: transform variables in default value of mixins
