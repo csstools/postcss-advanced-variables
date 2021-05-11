@@ -1,5 +1,9 @@
 # Changes to PostCSS Advanced Variables
 
+### 4.0.0
+
+- Updated: `postcss` to ^8.2.4 (major)
+
 ### 3.0.1 (February 27, 2020)
 
 - Fixed: parsing the contents of imported stylesheets (#71)

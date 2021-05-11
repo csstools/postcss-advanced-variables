@@ -1,6 +1,6 @@
 {
   "name": "postcss-advanced-variables",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Use Sass-like variables, conditionals, and iterators in CSS",
   "author": "Jonathan Neal <jonathantneal@hotmail.com>",
   "license": "CC0-1.0",
@@ -21,11 +21,13 @@
     "test:tape": "postcss-tape"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": "^10 || ^12 || >=14"
   },
   "dependencies": {
-    "@csstools/sass-import-resolve": "^1.0.0",
-    "postcss": "^7.0.6"
+    "@csstools/sass-import-resolve": "^1.0.0"
+  },
+  "peerDependencies": {
+    "postcss": "^8.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
@@ -35,8 +37,9 @@
     "babel-plugin-array-includes": "^2.0.3",
     "eslint": "^5.9.0",
     "eslint-config-dev": "^2.0.0",
-    "postcss-scss": "^2.0.0",
-    "postcss-tape": "2.2",
+    "postcss": "^8.2.4",
+    "postcss-scss": "^3.0.5",
+    "postcss-tape": "^6.0.1",
     "pre-commit": "^1.2.2",
     "rollup": "^0.67.3",
     "rollup-plugin-babel": "^4.0.3"
