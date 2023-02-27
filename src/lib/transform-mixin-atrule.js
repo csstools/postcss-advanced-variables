@@ -40,4 +40,4 @@ const getMixinOpts = (node, opts) => {
 };
 
 // match an opening parenthesis
-const matchOpeningParen = '(';
+const matchOpeningParen = /(?<!var)\(/;
