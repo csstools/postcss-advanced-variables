@@ -146,5 +146,14 @@ module.exports = {
 			unresolved: 'warn'
 		},
 		warnings: 1
-	}
+	},
+	'properties': {
+		message: 'supports variable property names',
+		source: 'property.css',
+		expect: 'property.expect.css',
+		result: 'property.result.css',
+		processOptions: {
+			syntax: require('postcss-scss')
+		}
+	},
 };

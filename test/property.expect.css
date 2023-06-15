@@ -1,0 +1,14 @@
+--foo-replacement: "test-1";
+--foo-replacement2: bar;
+--foo-bar: foo;
+
+--each-foo: foo;
+
+--each-bar: bar;
+
+--each-baz: baz;
+
+.class {
+    --custom-property: black;
+    color: var(--custom-property)
+}
