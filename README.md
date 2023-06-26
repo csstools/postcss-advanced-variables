@@ -2,6 +2,7 @@
 
 [![NPM Version][npm-img]][npm-url]
 [![Build Status][cli-img]][cli-url]
+[![Test Status][test-img]][test-url]
 [![Support Chat][git-img]][git-url]
 
 [PostCSS Advanced Variables] lets you use Sass-like variables, conditionals,
@@ -563,6 +564,8 @@ require('postcss-advanced-variables')({
 
 [cli-img]: https://img.shields.io/travis/jonathantneal/postcss-advanced-variables.svg
 [cli-url]: https://travis-ci.org/jonathantneal/postcss-advanced-variables
+[test-img]: https://github.com/csstools/postcss-advanced-variables/actions/workflows/test.yml/badge.svg
+[test-url]: https://github.com/csstools/postcss-advanced-variables/actions/workflows/test.yml
 [git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
 [git-url]: https://gitter.im/postcss/postcss
 [npm-img]: https://img.shields.io/npm/v/postcss-advanced-variables.svg
