@@ -1,0 +1,18 @@
+$test-var-1: foo;
+$test-var-2: bar;
+$test-var-3: (foo, bar, baz);
+$test-var-4: custom-property;
+$test-var-5: black;
+
+--$(test-var-1)-replacement: "test-1";
+--$(test-var-1)-replacement2: $test-var-2;
+--$(test-var-1)-$(test-var-2): $test-var-1;
+
+@each $i in $test-var-3 {
+	--each-$(i): $i;
+}
+
+.class {
+    --$(test-var-4): $test-var-5;
+    color: var(--$(test-var-4))
+}
