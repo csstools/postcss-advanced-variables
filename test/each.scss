@@ -1,0 +1,51 @@
+$arrayTest: (one, two);
+
+$objectTest: (one: "1", two: "2");
+$objectStringTest: ("one": "1", "two": "2");
+
+$objectStringTestMultiLine: (
+	"one": "1",
+	"two": "2"
+);
+
+/* arrayTest: $value */
+@each $value in $arrayTest {
+    .#{$value}-arrayTest {
+      	content: #{$value};
+    }
+}
+
+/* arrayTest: $value, $key */
+@each $value, $key in $arrayTest {
+    .#{$key}-arrayTest {
+      content: #{$value};
+    }
+}
+
+/* objectTest: $value */
+@each $value in $objectTest {
+    .#{$value}-arrayTest {
+      	content: #{$value};
+    }
+}
+
+/* objectTest: $key, $value */
+@each $key, $value in $objectTest {
+    .#{$key}-arrayTest {
+      content: #{$value};
+    }
+}
+
+/* objectStringTest: $key, $value */
+@each $key, $value in $objectStringTest {
+    .#{$key}-arrayTest {
+      content: #{$value};
+    }
+}
+
+/* objectStringTestMultiLine: $key, $value */
+@each $key, $value in $objectStringTestMultiLine {
+    .#{$key}-arrayTest {
+      content: #{$value};
+    }
+}

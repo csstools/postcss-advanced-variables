@@ -38,7 +38,7 @@ export default function getValueAsObject(value) {
 const matchWrappingParens = /^\(([\W\w]*)\)$/g;
 
 // match a property name (any-possible_name)
-const matchDeclaration = /^([\w-]+)\s*:\s*([\W\w]+)\s*$/;
+const matchDeclaration = /^["']?([\w-]+)["']?\s*:\s*([\W\w]+)\s*$/;
 
 // match a trailing comma
 const matchTrailingComma = /\s*,\s*$/;
