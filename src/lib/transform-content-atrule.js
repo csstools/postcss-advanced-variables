@@ -20,7 +20,9 @@ export default function transformContentAtrule(rule, opts) {
 			// transform the clone children
 			return transformNode(clone, opts).then(() => {
 				// replace the @content at-rule with the clone children
-				rule.parent.insertBefore(rule, clone.nodes);
+				if (clone.nodes) {
+					rule.parent.insertBefore(rule, clone.nodes);
+				}
 
 				rule.remove();
 			})
