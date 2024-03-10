@@ -72,7 +72,13 @@ export default function transformImportAtrule(rule, opts) {
 	}
 }
 
-const processor = postcss();
+const noopPlugin = () => {
+	return { postcssPlugin: 'noop-plugin', Once() {} };
+};
+
+noopPlugin.postcss = true;
+
+const processor = postcss([noopPlugin()]);
 
 // return the @import statement options (@import ID, @import ID MEDIA)
 const getImportOpts = (node, opts) => {

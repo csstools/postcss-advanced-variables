@@ -28,7 +28,7 @@ function transformRuleOrDecl(child, opts) {
 		const type = child.type;
 
 		if ('atrule' === type) {
-			const name = child.name.toLowerCase();
+			const name = (child.name || '').toLowerCase();
 
 			if ('content' === name) {
 				// transform @content at-rules
