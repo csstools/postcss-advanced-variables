@@ -1,0 +1,47 @@
+/* arrayTest: $value */
+.one-arrayTest {
+      	content: one;
+    }
+.two-arrayTest {
+      	content: two;
+    }
+
+/* arrayTest: $value, $key */
+.0-arrayTest {
+      content: one;
+    }
+.1-arrayTest {
+      content: two;
+    }
+
+/* objectTest: $value */
+."1"-arrayTest {
+      	content: "1";
+    }
+."2"-arrayTest {
+      	content: "2";
+    }
+
+/* objectTest: $key, $value */
+.one-arrayTest {
+      content: "1";
+    }
+.two-arrayTest {
+      content: "2";
+    }
+
+/* objectStringTest: $key, $value */
+.one-arrayTest {
+      content: "1";
+    }
+.two-arrayTest {
+      content: "2";
+    }
+
+/* objectStringTestMultiLine: $key, $value */
+.one-arrayTest {
+      content: "1";
+    }
+.two-arrayTest {
+      content: "2";
+    }
