@@ -41,7 +41,7 @@
     "postcss-scss": "^3.0.5",
     "postcss-tape": "^6.0.1",
     "pre-commit": "^1.2.2",
-    "rollup": "^0.67.3",
+    "rollup": "^3.29.5",
     "rollup-plugin-babel": "^4.0.3"
   },
   "eslintConfig": {
