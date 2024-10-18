@@ -1,6 +1,6 @@
 {
   "name": "postcss-advanced-variables",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Use Sass-like variables, conditionals, and iterators in CSS",
   "author": "Jonathan Neal <jonathantneal@hotmail.com>",
   "license": "CC0-1.0",
@@ -15,13 +15,12 @@
   ],
   "scripts": {
     "prepublishOnly": "npm test",
-    "pretest": "rollup -c .rollup.js --silent",
-    "test": "npm run test:js && npm run test:tape",
-    "test:js": "eslint src/*.js src/lib/*.js --cache --ignore-path .gitignore --quiet",
-    "test:tape": "postcss-tape"
+    "pretest": "npm run build",
+    "build": "rollup -c .rollup.mjs --silent",
+    "test": "postcss-tape"
   },
   "engines": {
-    "node": "^10 || ^12 || >=14"
+    "node": ">=18"
   },
   "dependencies": {
     "@csstools/sass-import-resolve": "^1.0.0"
@@ -30,32 +29,10 @@
     "postcss": "^8.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/plugin-external-helpers": "^7.0.0",
-    "@babel/preset-env": "^7.1.6",
-    "babel-eslint": "^10",
-    "babel-plugin-array-includes": "^2.0.3",
-    "eslint": "^5.9.0",
-    "eslint-config-dev": "^2.0.0",
     "postcss": "^8.4",
     "postcss-scss": "^3.0.5",
     "postcss-tape": "^6.0.1",
-    "pre-commit": "^1.2.2",
-    "rollup": "^0.67.3",
-    "rollup-plugin-babel": "^4.0.3"
-  },
-  "eslintConfig": {
-    "extends": "dev",
-    "parser": "babel-eslint",
-    "rules": {
-      "consistent-return": [
-        0
-      ],
-      "max-params": [
-        1,
-        5
-      ]
-    }
+    "rollup": "^4.24.0"
   },
   "keywords": [
     "postcss",

@@ -1,5 +1,10 @@
 # Changes to PostCSS Advanced Variables
 
+### 5.0.0
+
+- Updated dependencies
+- Changed: Support for Node 18+
+
 ### 4.0.0
 
 - Updated: `postcss` to ^8.4 (major)

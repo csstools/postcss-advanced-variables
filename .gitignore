@@ -5,6 +5,7 @@ node_modules
 .*
 !.editorconfig
 !.gitignore
+!.rollup.mjs
 !.rollup.js
 !.tape.js
 !.travis.yml
