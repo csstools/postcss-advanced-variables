@@ -69,3 +69,12 @@ $default-radius: 2em;
 		min-width: $min-width;
 	}
 }
+
+.test-5c {
+	@include mixin-test-5(50em) {
+	}
+}
+
+.test-5d {
+	@include mixin-test-5(20em);
+}
