@@ -36,7 +36,7 @@ export default function getReplacedString(string, node, opts) {
 }
 
 // match all $name, $(name), and #{$name} variables (and catch the character before it)
-const matchVariables = /(.?)(?:\$([A-z][\w-]*)|\$\(([A-z][\w-]*)\)|#\{\$([A-z][\w-]*)\})/g;
+const matchVariables = /(.?)(?:\$([a-zA-Z][\w-]*)|\$\(([a-zA-Z][\w-]*)\)|#\{\$([a-zA-Z][\w-]*)\})/g;
 
 // return a sass stringified variable
 const stringify = object => Array.isArray(object)

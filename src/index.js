@@ -2,7 +2,7 @@
 import transformNode from './lib/transform-node';
 import resolve from '@csstools/sass-import-resolve';
 
-const matchProtocol = /^(?:[A-z]+:)?\/\//;
+const matchProtocol = /^(?:[a-zA-Z]+:)?\/\//;
 
 // plugin
 const plugin = opts => ({
