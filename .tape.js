@@ -156,4 +156,13 @@ module.exports = {
 			syntax: require('postcss-scss')
 		}
 	},
+	'each': {
+		message: 'supports each',
+		source: 'each.scss',
+		expect: 'each.expect.scss',
+		result: 'each.result.scss',
+		processOptions: {
+			syntax: require('postcss-scss')
+		}
+	},
 };

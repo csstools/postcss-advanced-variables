@@ -55,7 +55,7 @@ export default function transformEachAtrule(rule, opts) {
 // return the @each statement options (@each NAME in LIST, @each NAME ITERATOR in LIST)
 const getEachOpts = (node, opts) => {
 	const params = node.params.split(matchInOperator);
-	const args    = (params[0] || '').trim().split(' ');
+	const args    = (params[0] || '').trim().split(/[\s,]+/);
 	const varname = args[0].trim().slice(1);
 	const incname = args.length > 1 && args[1].trim().slice(1);
 	const rawlist = getValueAsObject(
@@ -66,6 +66,11 @@ const getEachOpts = (node, opts) => {
 		)
 	);
 	const list = 'string' === typeof rawlist ? [rawlist] : rawlist;
+
+	const reverseParams = incname && !Array.isArray(list)
+	if (reverseParams) {
+		return { incname: varname, varname: incname, list };
+	}
 
 	return { varname, incname, list };
 };
