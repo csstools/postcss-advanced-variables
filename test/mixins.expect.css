@@ -51,3 +51,13 @@
 		min-width: 60em;
 	}
 }
+
+.test-5c {
+	@media (min-width: 50em) {
+	}
+}
+
+.test-5d {
+	@media (min-width: 20em) {
+	}
+}
